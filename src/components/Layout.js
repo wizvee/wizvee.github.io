@@ -11,8 +11,8 @@ export const darkTheme = {
 
 export const lightTheme = {
   body: '#f3f2e9',
-  text: '#665d5a',
-  primary: '#fd8c9f',
+  text: '#775f59',
+  primary: '#a67dc3',
   mark: '#ffcf96',
 }
 
@@ -31,7 +31,7 @@ const GlobalStyle = createGlobalStyle`
 
 const ResponsiveBlock = styled.div`
   margin: 0 auto; /* 중앙 정렬 */
-  padding: 0 3rem;
+  padding: 0 2rem;
   width: 768px;
 
   /* 브라우저 크기에 따라 가로 크기 변경 */

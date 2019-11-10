@@ -20,7 +20,7 @@ const Profile = () => {
   return (
     <Container>
       <span className="mark author">@wizvee</span>
-      <div clasName="desc">프런트엔드 개발자를 꿈꾸고 있습니다! ☺</div>
+      <div className="desc">프런트엔드 개발자를 꿈꾸고 있습니다! ☺</div>
     </Container>
   )
 }
