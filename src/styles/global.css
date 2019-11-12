@@ -5,6 +5,8 @@
   font-style: normal;
 }
 
+@import url('https://fonts.googleapis.com/css?family=Fira+Code&display=swap');
+
 * {
   margin: 0;
   padding: 0;
@@ -19,4 +21,9 @@ body {
 a {
   text-decoration: none;
   color: inherit;
+}
+
+.gatsby-highlight pre[class*="language-"],
+.gatsby-highlight code[class*="language-"] {
+  font-family: 'Fira Code', 'NanumSquareRound';
 }

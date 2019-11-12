@@ -5,6 +5,7 @@ import Layout from '../components/Layout'
 import Profile from '../components/Profile'
 
 const Article = styled(Link)`
+  color: inherit;
   header {
     margin-bottom: 0.5rem;
     h3 {

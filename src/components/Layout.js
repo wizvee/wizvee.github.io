@@ -26,6 +26,10 @@ const GlobalStyle = createGlobalStyle`
   .mark {
     background: ${({ theme }) => theme.mark}
   }
+  a {
+    position: relative;
+    color: ${({ theme }) => theme.primary};
+  }
  }
 `
 
