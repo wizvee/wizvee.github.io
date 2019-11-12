@@ -45,7 +45,7 @@ const ResponsiveBlock = styled.div`
 `
 
 const Layout = ({ children }) => {
-  const [theme, setTheme] = useState(lightTheme)
+  const [theme, setTheme] = useState(darkTheme)
 
   const onToggle = () => {
     if (theme === lightTheme) return setTheme(darkTheme)
