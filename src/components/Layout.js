@@ -76,7 +76,7 @@ const GlobalStyle = createGlobalStyle`
 const ResponsiveBlock = styled.div`
   display: flex;
   flex-direction: column;
-  margin: 0 auto; /* 중앙 정렬 */
+  margin: 0 auto 1rem; /* 중앙 정렬 */
   padding: 0 2rem;
   width: 768px;
   max-width: 100%;

@@ -6,7 +6,7 @@ const Container = styled.div`
   align-items: center;
   justify-content: center;
   margin-top: auto;
-  padding: 1rem 0;
+  padding: 2rem 0 0;
   small {
     font-weight: 600;
   }
