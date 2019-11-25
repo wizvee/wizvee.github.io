@@ -1,35 +1,76 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import styled, { createGlobalStyle } from 'styled-components'
 import Header from './Header'
 
+// 테마 객체 생성
 export const darkTheme = {
   body: '#292d3e',
   text: '#b2ccd6',
   primary: '#c792ea',
-  mark: '#ffcf96',
+  second: '#f9c76a',
+  third: '#c3e88d',
 }
 
 export const lightTheme = {
   body: '#f3f2e9',
   text: '#775f59',
-  primary: '#a67dc3',
-  mark: '#ffcf96',
+  primary: '#ff6969',
+  second: '#f7a54a',
+  third: '#98c05d',
 }
 
 const GlobalStyle = createGlobalStyle`
+ /* 글로벌 스타일 설정 */
  body {
   background: ${({ theme }) => theme.body};
   color: ${({ theme }) => theme.text};
+  font-size: 1rem;
   .primary {
     color: ${({ theme }) => theme.primary};
   }
-  .mark {
-    background: ${({ theme }) => theme.mark}
+  .nomal {
+    color: ${({ theme }) => theme.text};
   }
-  a {
-    position: relative;
+  .mark {
+    background: ${({ theme }) => theme.second};
+    color: ${({ theme }) => theme.body};
+  }
+  p {
+    margin: 1rem 0;
+    & + & {
+      margin-top: 0;
+    }
+  }
+  code[class="language-text"] {
+    background: ${({ theme }) =>
+      theme === lightTheme ? '#ffe5db' : '#363f5c'};
     color: ${({ theme }) => theme.primary};
   }
+  &::-webkit-scrollbar {
+    width: 0.4rem;
+    height: 0.4rem;
+  }
+  &::-webkit-scrollbar-track {
+    background-color: ${({ theme }) => theme.body};
+  }
+  &::-webkit-scrollbar-thumb {
+    background-color: ${({ theme }) => theme.text};
+  }
+ }
+ h1 {
+  color: ${({ theme }) => theme.primary};
+ }
+ h2 {
+  color: ${({ theme }) => theme.second};
+  margin: 2rem 0 1rem;
+ }
+ h3 {
+  color: ${({ theme }) => theme.third};
+  margin: 1rem 0;
+ }
+ a {
+  text-decoration: none;
+  color: ${({ theme }) => theme.primary};
  }
 `
 
@@ -48,9 +89,20 @@ const Layout = ({ children }) => {
   const [theme, setTheme] = useState(darkTheme)
 
   const onToggle = () => {
-    if (theme === lightTheme) return setTheme(darkTheme)
-    else return setTheme(lightTheme)
+    if (theme === lightTheme) {
+      localStorage.setItem('theme', 'dark')
+      return setTheme(darkTheme)
+    } else {
+      localStorage.setItem('theme', 'light')
+      return setTheme(lightTheme)
+    }
   }
+
+  useEffect(() => {
+    const theme = localStorage.getItem('theme')
+    if (theme === 'light') setTheme(lightTheme)
+    else setTheme(darkTheme)
+  }, [])
 
   return (
     <>

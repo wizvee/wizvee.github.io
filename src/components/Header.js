@@ -3,14 +3,16 @@ import { Link } from 'gatsby'
 import styled from 'styled-components'
 import { lightTheme } from './Layout'
 
-const Container = styled.div`
+const Container = styled.header`
   display: flex;
   align-items: center;
   justify-content: space-between;
   width: 100%;
   padding: 2rem 0;
-  h1 {
+  h1,
+  h2 {
     flex: 1;
+    margin: 0;
   }
 `
 
@@ -52,7 +54,11 @@ const Toggle = styled.div`
 export default ({ theme, onToggle }) => (
   <Container>
     <Link to="/">
-      <h1 className="primary">Wizvee</h1>
+      {window.location.pathname === '/' ? (
+        <h1>Wizvee</h1>
+      ) : (
+        <h2 className="nomal">Wizvee</h2>
+      )}
     </Link>
     <Toggle
       className={theme === lightTheme ? 'day' : 'night'}

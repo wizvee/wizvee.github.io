@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link, graphql } from 'gatsby'
+import PageTransition from 'gatsby-plugin-page-transitions'
 import styled from 'styled-components'
 import Layout from '../components/Layout'
 import Profile from '../components/Profile'
@@ -19,18 +20,20 @@ const Article = styled(Link)`
 
 const Index = ({ data }) => {
   return (
-    <Layout>
-      <Profile />
-      {data.allMarkdownRemark.edges.map(({ node }) => (
-        <Article key={node.id} to={node.fields.slug}>
-          <header>
-            <h3 className="primary">{node.frontmatter.title}</h3>
-            <small>{node.frontmatter.date}</small>
-          </header>
-          <p>{node.excerpt}</p>
-        </Article>
-      ))}
-    </Layout>
+    <PageTransition>
+      <Layout>
+        <Profile />
+        {data.allMarkdownRemark.edges.map(({ node }) => (
+          <Article key={node.id} to={node.fields.slug}>
+            <header>
+              <h3 className="primary">{node.frontmatter.title}</h3>
+              <small>{node.frontmatter.date}</small>
+            </header>
+            <p>{node.excerpt}</p>
+          </Article>
+        ))}
+      </Layout>
+    </PageTransition>
   )
 }
 
@@ -41,6 +44,7 @@ export const query = graphql`
     allMarkdownRemark(sort: { fields: frontmatter___date, order: DESC }) {
       edges {
         node {
+          id
           frontmatter {
             title
             date(formatString: "DD MMMM, YYYY")

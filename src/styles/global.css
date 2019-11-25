@@ -14,16 +14,24 @@
   font-family: 'NanumSquareRound';
 }
 
-body {
-  font-size: 1rem;
-}
-
-a {
-  text-decoration: none;
-  color: inherit;
-}
-
 .gatsby-highlight pre[class*="language-"],
 .gatsby-highlight code[class*="language-"] {
+  border-radius: 0.5rem;
   font-family: 'Fira Code', 'NanumSquareRound';
+}
+
+.gatsby-highlight pre[class*="language-"]::-webkit-scrollbar {
+  width: 0.3rem;
+  height: 0.3rem;
+}
+
+.gatsby-highlight pre[class*="language-"]::-webkit-scrollbar-track {
+  background-color: #2d2d2d;
+  border-bottom-left-radius: 0.5rem;
+  border-bottom-right-radius: 0.5rem;
+}
+
+.gatsby-highlight pre[class*="language-"]::-webkit-scrollbar-thumb {
+  border-radius: 0.5rem;
+  background-color: #555;
 }
