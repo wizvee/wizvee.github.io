@@ -104,6 +104,7 @@ const Layout = ({ children }) => {
       if (theme === 'light') setTheme(lightTheme)
       else setTheme(darkTheme)
     } else {
+      // 웹 스토리지에 'theme'가 없을 경우 기기 설정에 따름
       if (window.matchMedia('(prefers-color-scheme: dark)').matches)
         setTheme(darkTheme)
       else setTheme(lightTheme)
