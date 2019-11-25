@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import styled, { createGlobalStyle } from 'styled-components'
 import Header from './Header'
+import Footer from './Footer'
 
 // 테마 객체 생성
 export const darkTheme = {
@@ -62,11 +63,9 @@ const GlobalStyle = createGlobalStyle`
  }
  h2 {
   color: ${({ theme }) => theme.second};
-  margin: 2rem 0 1rem;
  }
  h3 {
   color: ${({ theme }) => theme.third};
-  margin: 1rem 0;
  }
  a {
   text-decoration: none;
@@ -75,12 +74,20 @@ const GlobalStyle = createGlobalStyle`
 `
 
 const ResponsiveBlock = styled.div`
+  display: flex;
+  flex-direction: column;
   margin: 0 auto; /* 중앙 정렬 */
   padding: 0 2rem;
   width: 768px;
+  max-width: 100%;
+  min-height: 100vh;
 
   /* 브라우저 크기에 따라 가로 크기 변경 */
   @media (max-width: 768px) {
+    padding: 0 3rem;
+  }
+  @media (max-width: 426px) {
+    padding: 0 2rem;
     width: 100%;
   }
 `
@@ -117,6 +124,7 @@ const Layout = ({ children }) => {
       <ResponsiveBlock>
         <Header theme={theme} onToggle={onToggle} />
         {children}
+        <Footer />
       </ResponsiveBlock>
     </>
   )

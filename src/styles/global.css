@@ -31,6 +31,10 @@ h3 {
   font-family: 'Binggrae-Bold';
 }
 
+p {
+  font-size: 0.96rem;
+}
+
 .gatsby-highlight pre[class*="language-"],
 .gatsby-highlight code[class*="language-"] {
   border-radius: 0.5rem;

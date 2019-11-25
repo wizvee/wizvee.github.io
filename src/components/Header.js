@@ -13,6 +13,7 @@ const Container = styled.header`
   h2 {
     flex: 1;
     margin: 0;
+    height: 40px;
     font-family: 'Lobster';
   }
 `

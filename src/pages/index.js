@@ -9,7 +9,7 @@ const Article = styled(Link)`
   display: block;
   color: inherit;
   & + & {
-    margin-top: 3rem;
+    margin-top: 2rem;
   }
   header {
     h2 {

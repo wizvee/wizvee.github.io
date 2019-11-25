@@ -12,6 +12,12 @@ const postTemplate = ({ data }) => {
     h1 {
       font-family: 'Binggrae-Bold';
     }
+    h2 {
+      margin: 2rem 0 1rem;
+    }
+    h3 {
+      margin: 1rem 0;
+    }
     small {
       display: inline-block;
       margin-bottom: 1rem;
