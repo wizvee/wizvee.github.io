@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { Link } from 'gatsby'
 import styled from 'styled-components'
 import { lightTheme } from './Layout'
@@ -51,20 +51,24 @@ const Toggle = styled.div`
   }
 `
 
-export default ({ theme, onToggle }) => (
-  <Container>
-    <Link to="/">
-      {window.location.pathname === '/' ? (
-        <h1>Wizvee</h1>
-      ) : (
-        <h2 className="nomal">Wizvee</h2>
-      )}
-    </Link>
-    <Toggle
-      className={theme === lightTheme ? 'day' : 'night'}
-      onClick={onToggle}
-    >
-      <div className="planet" />
-    </Toggle>
-  </Container>
-)
+export default ({ theme, onToggle }) => {
+  const [pathname, setPathname] = useState('/')
+
+  useEffect(() => {
+    setPathname(window.location.pathname)
+  }, [])
+
+  return (
+    <Container>
+      <Link to="/">
+        {pathname === '/' ? <h1>Wizvee</h1> : <h2 className="nomal">Wizvee</h2>}
+      </Link>
+      <Toggle
+        className={theme === lightTheme ? 'day' : 'night'}
+        onClick={onToggle}
+      >
+        <div className="planet" />
+      </Toggle>
+    </Container>
+  )
+}
