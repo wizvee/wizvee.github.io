@@ -9,6 +9,9 @@ const postTemplate = ({ data }) => {
 
   const Container = styled.div`
     margin-bottom: 4rem;
+    h1 {
+      font-family: 'Binggrae-Bold';
+    }
     small {
       display: inline-block;
       margin-bottom: 1rem;

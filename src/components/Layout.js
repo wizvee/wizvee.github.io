@@ -100,8 +100,14 @@ const Layout = ({ children }) => {
 
   useEffect(() => {
     const theme = localStorage.getItem('theme')
-    if (theme === 'light') setTheme(lightTheme)
-    else setTheme(darkTheme)
+    if (theme) {
+      if (theme === 'light') setTheme(lightTheme)
+      else setTheme(darkTheme)
+    } else {
+      if (window.matchMedia('(prefers-color-scheme: dark)').matches)
+        setTheme(darkTheme)
+      else setTheme(lightTheme)
+    }
   }, [])
 
   return (

@@ -5,7 +5,7 @@ const Container = styled.div`
   padding-bottom: 2rem;
   .author {
     display: inline-block;
-    padding: 0.2rem 0.4rem;
+    padding: 0.1rem 0.3rem;
     border-radius: 1rem;
     font-size: 0.8rem;
     font-weight: 600;

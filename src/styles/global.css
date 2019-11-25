@@ -5,13 +5,30 @@
   font-style: normal;
 }
 
-@import url('https://fonts.googleapis.com/css?family=Fira+Code&display=swap');
+@font-face {
+  font-family: 'Binggrae-Bold';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_one@1.0/Binggrae-Bold.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@import url('https://fonts.googleapis.com/css?family=Fira+Code|Lobster&display=swap');
 
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   font-family: 'NanumSquareRound';
+}
+
+body {
+  transition: all 0.2s linear;
+}
+
+h1,
+h2,
+h3 {
+  font-family: 'Binggrae-Bold';
 }
 
 .gatsby-highlight pre[class*="language-"],

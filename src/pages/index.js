@@ -6,10 +6,14 @@ import Layout from '../components/Layout'
 import Profile from '../components/Profile'
 
 const Article = styled(Link)`
+  display: block;
   color: inherit;
+  & + & {
+    margin-top: 3rem;
+  }
   header {
-    margin-bottom: 0.5rem;
-    h3 {
+    h2 {
+      margin: 0;
       margin-bottom: 0.3rem;
     }
   }
@@ -26,7 +30,7 @@ const Index = ({ data }) => {
         {data.allMarkdownRemark.edges.map(({ node }) => (
           <Article key={node.id} to={node.fields.slug}>
             <header>
-              <h3 className="primary">{node.frontmatter.title}</h3>
+              <h2 className="primary">{node.frontmatter.title}</h2>
               <small>{node.frontmatter.date}</small>
             </header>
             <p>{node.excerpt}</p>

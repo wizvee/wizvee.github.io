@@ -1,5 +1,5 @@
 ---
-title: 'Gatsby로 블로그 만들기'
+title: 'Gatsby로 블로그 생성'
 date: '2019-11-10'
 tags: ['React', 'Gatsby']
 ---
@@ -23,7 +23,7 @@ $ cd [title]
 $ gatsby develop # 개발 서버를 구동합니다.
 ```
 
-개발 서버를 구동하게 되면 **http://localhost:8000/**에서 생성된 사이트를 확인할 수 있습니다. 👀 개발 서버 구동 시에는 **watched** 상태이므로 파일 수정 뒤 저장하기만 하면 즉시 브라우저에 반영됩니다! 😊
+개발 서버를 구동하게 되면 **http://localhost:8000/**에서 생성된 사이트를 확인할 수 있습니다. 👀 개발 서버에선 **watched** 상태이므로 파일 수정 뒤 저장하기만 하면 즉시 브라우저에 반영됩니다! 😊
 
 ### Gatsby에서 Styled Components 사용하기
 
@@ -50,7 +50,7 @@ plugins: [
 
 우선 적합한 js 파일 내에 테마 객체를 생성합니다. 이번 경우 제 블로그는 그리 복잡한 구조가 아니므로 `Layout.js` 문서 내에 생성하였습니다.
 
-이후 `styled-components`의 `createGlobalStyle` 컴포넌트를 이용하여 `props`로 설정된 테마의 스타일을 적용하도록 합니다.
+이후 `createGlobalStyle` 컴포넌트를 이용하여 `props`로 설정된 테마의 스타일을 적용하도록 합니다.
 
 ```javascript
 import { createGlobalStyle } from 'styled-components'
@@ -85,7 +85,9 @@ const GlobalStyle = createGlobalStyle`
 `
 ```
 
-이후 컴포넌트 내에 `useState`를 이용하여 테마를 위한 상태를 관리합니다. 만약 브라우저를 새로고침하거나 껐다 켜도 스위치한 테마를 남기고 싶을 경우 `localStorage`로 웹 스토리지에 저장한 뒤 `useEffect`를 이용하여 컴포넌트가 처음 마운트될 때 적용되도록 합니다.
+이후 컴포넌트 내에 `useState`를 이용하여 테마를 위한 상태를 관리합니다.
+
+만약 브라우저를 새로고침하거나 껐다 켜도 스위치한 테마를 남기고 싶을 경우 웹 스토리지를 이용해 저장한 뒤 `useEffect`를 이용하여 컴포넌트가 처음 마운트될 때 테마에 적용되도록 합니다.
 
 이제 간단하게 테마를 스위칭할 수 있게 되었습니다! 😁
 
