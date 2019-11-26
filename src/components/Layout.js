@@ -6,7 +6,7 @@ import Footer from './Footer'
 // 테마 객체 생성
 export const darkTheme = {
   body: '#292d3e',
-  text: '#b2ccd6',
+  text: '#a6accd',
   primary: '#c792ea',
   second: '#f9c76a',
   third: '#c3e88d',
@@ -14,7 +14,7 @@ export const darkTheme = {
 
 export const lightTheme = {
   body: '#f3f2e9',
-  text: '#775f59',
+  text: '#83756e',
   primary: '#ff6969',
   second: '#f7a54a',
   third: '#98c05d',
@@ -35,6 +35,17 @@ const GlobalStyle = createGlobalStyle`
   .mark {
     background: ${({ theme }) => theme.second};
     color: ${({ theme }) => theme.body};
+  }
+  .tags {
+    padding: 0.2rem 0.3rem;
+    border-radius: 0.5rem;
+    background: ${({ theme }) => theme.text};
+    color: ${({ theme }) => theme.body};
+    font-size: 0.85rem;
+    cursor: pointer;
+  }
+  .selected {
+    background: ${({ theme }) => theme.primary};
   }
   p {
     margin: 1rem 0;
@@ -76,7 +87,7 @@ const GlobalStyle = createGlobalStyle`
 const ResponsiveBlock = styled.div`
   display: flex;
   flex-direction: column;
-  margin: 0 auto 1rem; /* 중앙 정렬 */
+  margin: 0 auto; /* 중앙 정렬 */
   padding: 0 2rem;
   width: 768px;
   max-width: 100%;

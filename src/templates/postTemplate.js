@@ -21,6 +21,13 @@ const postTemplate = ({ data }) => {
       display: inline-block;
       margin-bottom: 1rem;
     }
+    ol,
+    ul {
+      transform: translateX(2rem);
+    }
+    li + li {
+      margin-top: 0.7rem;
+    }
   `
 
   return (
