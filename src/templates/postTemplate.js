@@ -23,7 +23,7 @@ const postTemplate = ({ data }) => {
     }
     ol,
     ul {
-      transform: translateX(2rem);
+      margin-left: 2rem;
     }
     li + li {
       margin-top: 0.7rem;

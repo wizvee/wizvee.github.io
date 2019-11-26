@@ -1,5 +1,5 @@
 ---
-title: 'noopener 그리고 noreferrer'
+title: 'noopener & noreferrer'
 date: '2019-11-27'
 tags: ['HTML']
 ---

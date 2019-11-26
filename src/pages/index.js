@@ -24,7 +24,7 @@ const Article = styled(Link)`
     }
   }
   p {
-    font-size: 0.9rem;
+    font-size: 0.93rem;
   }
 `
 

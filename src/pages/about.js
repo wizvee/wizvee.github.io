@@ -10,7 +10,7 @@ export default () => {
     }
     ul {
       margin-top: 1rem;
-      transform: translateX(2rem);
+      margin-left: 2rem;
       li {
         line-height: 170%;
       }
