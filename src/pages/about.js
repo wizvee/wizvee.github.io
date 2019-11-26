@@ -15,14 +15,14 @@ export default () => {
         line-height: 170%;
       }
     }
+    h2 {
+      margin-top: 2rem;
+      &:nth-child(1) {
+        margin-top: 0;
+      }
+    }
     h3 {
       margin-top: 1rem;
-    }
-    .divider {
-      margin-bottom: 2rem;
-      width: 100%;
-      height: 1rem;
-      border-bottom: 0.15rem dashed #bbb;
     }
   `
 
@@ -51,7 +51,6 @@ export default () => {
               것 같다고 생각합니다. 👩‍💻
             </p>
           </div>
-          <div className="divider" />
           <h2>Stacks</h2>
           <div>
             <ul>
@@ -66,7 +65,6 @@ export default () => {
               <li>Oracle</li>
             </ul>
           </div>
-          <div className="divider" />
           <h2>Projects</h2>
           <div>
             <h3>figtable</h3>
@@ -94,7 +92,8 @@ export default () => {
             </p>
             <h4>개발 환경</h4>
             <p>
-              <span className="primary">프런트엔드</span> React
+              <span className="primary">프런트엔드</span> React, 모바일까지
+              대응한 반응형 웹
               <br />
               <span className="primary">백엔드</span> Spring을 이용한 RESTful
               API, Oracle
@@ -147,7 +146,6 @@ export default () => {
               </p>
             </div>
           </div>
-          <div className="divider" />
           <h2>Education</h2>
           <div>
             <h3>kh정보교육원</h3>

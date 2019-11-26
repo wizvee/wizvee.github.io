@@ -8,7 +8,6 @@ const postTemplate = ({ data }) => {
   const post = data.markdownRemark
 
   const Container = styled.div`
-    margin-bottom: 4rem;
     h1 {
       font-family: 'Binggrae-Bold';
     }
