@@ -4,6 +4,8 @@ import Img from 'gatsby-image';
 import { Link } from 'gatsby';
 import styled from 'styled-components';
 
+library.add(AiOutlineIe, AiFillYoutube, AiFillGithub);
+
 const Container = styled.div`
   a {
     position: relative;

@@ -6,6 +6,8 @@ import PageTransition from 'gatsby-plugin-page-transitions';
 import styled from 'styled-components';
 import Layout from '../components/Layout';
 
+library.add(AiOutlineIe, AiFillYoutube, AiFillGithub);
+
 const Container = styled.div`
   h1 {
     font-family: 'Binggrae-Bold';
