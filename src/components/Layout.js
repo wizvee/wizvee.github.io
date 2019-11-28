@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react'
-import styled, { createGlobalStyle } from 'styled-components'
-import Header from './Header'
-import Footer from './Footer'
+import React, { useState, useEffect } from 'react';
+import styled, { createGlobalStyle } from 'styled-components';
+import Header from './Header';
+import Footer from './Footer';
 
 // 테마 객체 생성
 export const darkTheme = {
@@ -10,7 +10,7 @@ export const darkTheme = {
   primary: '#c792ea',
   second: '#f9c76a',
   third: '#c3e88d',
-}
+};
 
 export const lightTheme = {
   body: '#f3f2e9',
@@ -18,7 +18,7 @@ export const lightTheme = {
   primary: '#ff6969',
   second: '#f7a54a',
   third: '#98c05d',
-}
+};
 
 const GlobalStyle = createGlobalStyle`
  /* 글로벌 스타일 설정 */
@@ -53,6 +53,9 @@ const GlobalStyle = createGlobalStyle`
       margin-top: 0;
     }
   }
+  strong {
+    color: ${({ theme }) => theme.primary};
+  }
   code[class="language-text"] {
     background: ${({ theme }) =>
       theme === lightTheme ? '#ffe5db' : '#363f5c'};
@@ -82,7 +85,7 @@ const GlobalStyle = createGlobalStyle`
   text-decoration: none;
   color: ${({ theme }) => theme.primary};
  }
-`
+`;
 
 const ResponsiveBlock = styled.div`
   display: flex;
@@ -101,33 +104,33 @@ const ResponsiveBlock = styled.div`
     padding: 0 2rem;
     width: 100%;
   }
-`
+`;
 
 const Layout = ({ children }) => {
-  const [theme, setTheme] = useState(darkTheme)
+  const [theme, setTheme] = useState(darkTheme);
 
   const onToggle = () => {
     if (theme === lightTheme) {
-      localStorage.setItem('theme', 'dark')
-      return setTheme(darkTheme)
+      localStorage.setItem('theme', 'dark');
+      return setTheme(darkTheme);
     } else {
-      localStorage.setItem('theme', 'light')
-      return setTheme(lightTheme)
+      localStorage.setItem('theme', 'light');
+      return setTheme(lightTheme);
     }
-  }
+  };
 
   useEffect(() => {
-    const theme = localStorage.getItem('theme')
+    const theme = localStorage.getItem('theme');
     if (theme) {
-      if (theme === 'light') setTheme(lightTheme)
-      else setTheme(darkTheme)
+      if (theme === 'light') setTheme(lightTheme);
+      else setTheme(darkTheme);
     } else {
       // 웹 스토리지에 'theme'가 없을 경우 기기 설정에 따름
       if (window.matchMedia('(prefers-color-scheme: dark)').matches)
-        setTheme(darkTheme)
-      else setTheme(lightTheme)
+        setTheme(darkTheme);
+      else setTheme(lightTheme);
     }
-  }, [])
+  }, []);
 
   return (
     <>
@@ -138,7 +141,7 @@ const Layout = ({ children }) => {
         <Footer />
       </ResponsiveBlock>
     </>
-  )
-}
+  );
+};
 
-export default Layout
+export default Layout;

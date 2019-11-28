@@ -4,32 +4,30 @@ import PageTransition from 'gatsby-plugin-page-transitions'
 import styled from 'styled-components'
 import Layout from '../components/Layout'
 
-const postTemplate = ({ data }) => {
-  const post = data.markdownRemark
+const Container = styled.div`
+  h1 {
+    font-family: 'Binggrae-Bold';
+  }
+  h2 {
+    margin: 2rem 0 1rem;
+  }
+  h3 {
+    margin: 1rem 0;
+  }
+  small {
+    display: inline-block;
+    margin-bottom: 1rem;
+  }
+  ol,
+  ul {
+    margin-left: 2rem;
+  }
+  li + li {
+    margin-top: 0.7rem;
+  }
+`
 
-  const Container = styled.div`
-    h1 {
-      font-family: 'Binggrae-Bold';
-    }
-    h2 {
-      margin: 2rem 0 1rem;
-    }
-    h3 {
-      margin: 1rem 0;
-    }
-    small {
-      display: inline-block;
-      margin-bottom: 1rem;
-    }
-    ol,
-    ul {
-      margin-left: 2rem;
-    }
-    li + li {
-      margin-top: 0.7rem;
-    }
-  `
-
+const postTemplate = ({ data: { markdownRemark: post } }) => {
   return (
     <PageTransition>
       <Layout>

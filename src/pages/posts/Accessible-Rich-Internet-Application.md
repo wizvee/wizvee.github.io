@@ -1,4 +1,5 @@
 ---
+type: 'post'
 title: 'ARIA 정리하기'
 date: '2019-11-26'
 tags: ['HTML', 'React']

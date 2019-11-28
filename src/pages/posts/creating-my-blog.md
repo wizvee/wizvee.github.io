@@ -1,4 +1,5 @@
 ---
+type: 'post'
 title: 'Gatsby로 블로그 생성'
 date: '2019-11-10'
 tags: ['React', 'Gatsby']
@@ -42,7 +43,7 @@ plugins: [
 ]
 ```
 
-## 블로그에 테마 스위치 기능 추가
+## 테마 스위치 기능 추가하기
 
 [A Dark Mode Toggle with React and ThemeProvider](https://css-tricks.com/a-dark-mode-toggle-with-react-and-themeprovider/)을 참고하여 적용하였습니다.
 
@@ -94,26 +95,26 @@ const GlobalStyle = createGlobalStyle`
 이렇게 블로그에 테마 스위칭 기능을 추가하였습니다! 😁
 
 ```javascript
-const [theme, setTheme] = useState(darkTheme)
+const [theme, setTheme] = useState(darkTheme);
 
 const Layout = ({ children }) => {
-  const [theme, setTheme] = useState(darkTheme)
+  const [theme, setTheme] = useState(darkTheme);
 
   const onToggle = () => {
     if (theme === lightTheme) {
-      localStorage.setItem('theme', 'dark')
-      return setTheme(darkTheme)
+      localStorage.setItem('theme', 'dark');
+      return setTheme(darkTheme);
     } else {
-      localStorage.setItem('theme', 'light')
-      return setTheme(lightTheme)
+      localStorage.setItem('theme', 'light');
+      return setTheme(lightTheme);
     }
-  }
+  };
 
   useEffect(() => {
-    const theme = localStorage.getItem('theme')
-    if (theme == 'light') setTheme(lightTheme)
-    else setTheme(darkTheme)
-  }, [])
+    const theme = localStorage.getItem('theme');
+    if (theme == 'light') setTheme(lightTheme);
+    else setTheme(darkTheme);
+  }, []);
 
   return (
     <>
@@ -121,8 +122,8 @@ const Layout = ({ children }) => {
       <Header theme={theme} onToggle={onToggle} />
       {children}
     </>
-  )
-}
+  );
+};
 ```
 
 ### 기기 설정에 따라 동적으로 테마 적용
@@ -131,15 +132,47 @@ const Layout = ({ children }) => {
 
 ```javascript
 useEffect(() => {
-  const theme = localStorage.getItem('theme')
+  const theme = localStorage.getItem('theme');
   if (theme) {
-    if (theme === 'light') setTheme(lightTheme)
-    else setTheme(darkTheme)
+    if (theme === 'light') setTheme(lightTheme);
+    else setTheme(darkTheme);
   } else {
     // 웹 스토리지에 'theme'가 없을 경우 기기 설정에 따름
     if (window.matchMedia('(prefers-color-scheme: dark)').matches)
-      setTheme(darkTheme)
-    else setTheme(lightTheme)
+      setTheme(darkTheme);
+    else setTheme(lightTheme);
   }
-}, [])
+}, []);
 ```
+
+## 태그 기능 추가하기
+
+[Creating Tags Pages for Blog Posts](https://www.gatsbyjs.org/docs/adding-tags-and-categories-to-blog-posts/)를 참고하여 적용하였습니다. 다만 참고한 공식 문서는 태그 별 페이지로 전환되지만, 저는 `velog`와 같이 카테고리 같은 느낌을 원했기에… 결과물은 조금 다릅니다. 😋
+
+우선 markdown 문서를 작성할 때에 frontmatter에 tags를 추가해 줍니다.
+
+```markdown
+---
+type: 'post'
+title: 'Gatsby로 블로그 생성'
+date: '2019-11-10'
+tags: ['React', 'Gatsby']
+---
+```
+
+그리고 graphql 쿼리에 아래와 같이 추가하면 모든 markdown 문서의 태그들을 조회할 수 있습니다.
+
+```javascript
+export const query = graphql`
+  query {
+    allMarkdownRemark {
+      group(field: frontmatter___tags) {
+        tag: fieldValue
+        totalCount
+      }
+    }
+  }
+`;
+```
+
+이후 과정은 Gatsby의 공식 문서처럼 템플릿을 이용해 태그 별 조회 페이지를 만들 수도 있고, 제 블로그처럼 카테고리처럼 활용하셔도 무방합니다! 제 블로그는 `useState`로 해당 기능을 구현했습니다.

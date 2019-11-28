@@ -1,4 +1,5 @@
 ---
+type: 'post'
 title: 'noopener & noreferrer'
 date: '2019-11-27'
 tags: ['HTML']
@@ -14,7 +15,7 @@ Tabnabbing 공격이란, HTML 문서 내에서 `target`이 `_blanck`인 링크�
 
 1. 사용자가 `aaa.example.com`에 접속합니다.
 2. 해당 사이트에서 `link.example.com`으로 연결된 외부 링크를 클릭합니다.
-3. 새 탭으로 `link.example.com`이 열립니다. 이때 `link.example.com`에는 `window.opener`속성이 존재하여 opener의 location을 피싱 목적의 `phishing.example.com/login`으로 변경됩니다.
+3. 새 탭으로 `link.example.com`이 열립니다. 이때 `link.example.com`에는 window.opener속성이 존재하여 opener의 location을 피싱 목적의 `phishing.example.com/login`으로 변경됩니다.
 4. 사용자는 다시 본래의 탭으로 돌아옵니다.
 5. 로그인이 풀렸다고 생각하고 아이디와 비밀번호를 입력합니다. `phishing.example.com`은 해당 계정 정보를 탈취한 후 다시 본래의 사이트로 redirect 합니다.
 
