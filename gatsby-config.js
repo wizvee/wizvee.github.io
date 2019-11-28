@@ -65,5 +65,13 @@ module.exports = {
         transitionTime: 700,
       },
     },
+    {
+      resolve: 'gatsby-plugin-react-svg',
+      options: {
+        rule: {
+          include: /assets/,
+        },
+      },
+    },
   ],
 };
