@@ -1,10 +1,8 @@
 import React from 'react';
-import { AiOutlineIe, AiFillYoutube, AiFillGithub } from 'react-icons/ai';
 import Img from 'gatsby-image';
 import { Link } from 'gatsby';
 import styled from 'styled-components';
-
-library.add(AiOutlineIe, AiFillYoutube, AiFillGithub);
+import { AiOutlineIe, AiFillGithub, AiFillYoutube } from '../styles/icons';
 
 const Container = styled.div`
   a {
