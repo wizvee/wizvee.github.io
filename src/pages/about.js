@@ -83,7 +83,7 @@ export default ({
           <h2>Projects</h2>
           <div className="portfolios">
             {pf.map(({ node }) => (
-              <Portfolio node={node} />
+              <Portfolio key={node.id} node={node} />
             ))}
           </div>
           <h2>Education</h2>

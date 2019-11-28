@@ -25,7 +25,7 @@ const Container = styled.div`
     margin-left: 2rem;
   }
   li + li {
-    margin-top: 0.7rem;
+    margin-top: 0.5rem;
   }
   img {
     border-radius: 0.5rem;
@@ -44,7 +44,8 @@ const FeaturedInfo = styled.div`
       transform: translateY(0.2rem);
     }
     a {
-      margin-left: 0.7rem;
+      display: block;
+      margin-left: 1.7rem;
       font-weight: normal;
     }
   }
@@ -64,7 +65,7 @@ const portfolioTemplate = ({ data: { markdownRemark: pf } }) => {
             <Img fluid={featuredImage} alt="featuredImage" />
             <span>
               <AiOutlineIe />
-              website :
+              website
               <a
                 href={pf.frontmatter.website}
                 target="_blank"
@@ -75,7 +76,7 @@ const portfolioTemplate = ({ data: { markdownRemark: pf } }) => {
             </span>
             <span>
               <AiFillGithub />
-              github :
+              github
               <a
                 href={pf.frontmatter.github}
                 target="_blank"
@@ -86,13 +87,13 @@ const portfolioTemplate = ({ data: { markdownRemark: pf } }) => {
             </span>
             <span>
               <AiFillYoutube />
-              demo :
+              demo
               <a
                 href={pf.frontmatter.demeVideo}
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                {pf.frontmatter.demeVideo}
+                view
               </a>
             </span>
           </FeaturedInfo>

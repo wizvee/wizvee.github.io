@@ -59,6 +59,15 @@ const Container = styled.div`
         margin-right: 0.2rem;
       }
     }
+    @media (max-width: 426px) {
+      a {
+        display: flex;
+      }
+      a + a {
+        margin-left: 0;
+        margin-top: 0.3rem;
+      }
+    }
   }
 `;
 
