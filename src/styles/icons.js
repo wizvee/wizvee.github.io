@@ -16,7 +16,7 @@ export const AiFillYoutube = () => {
   );
 };
 
-export const AiFillYoutube = () => {
+export const AiFillGithub = () => {
   return (
     <svg
       stroke="currentColor"

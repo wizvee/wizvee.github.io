@@ -1,10 +1,10 @@
 import React from 'react';
-import { AiOutlineIe, AiFillYoutube, AiFillGithub } from 'react-icons/ai';
 import { graphql } from 'gatsby';
 import Img from 'gatsby-image';
 import PageTransition from 'gatsby-plugin-page-transitions';
 import styled from 'styled-components';
 import Layout from '../components/Layout';
+import { AiOutlineIe, AiFillGithub, AiFillYoutube } from '../styles/icons';
 
 const Container = styled.div`
   h1 {
