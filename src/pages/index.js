@@ -1,16 +1,40 @@
-import React, { useState } from 'react'
-import { Link, graphql } from 'gatsby'
-import PageTransition from 'gatsby-plugin-page-transitions'
-import styled from 'styled-components'
-import Layout from '../components/Layout'
-import Profile from '../components/Profile'
+import React, { useState, useEffect } from 'react';
+import { Link, graphql } from 'gatsby';
+import PageTransition from 'gatsby-plugin-page-transitions';
+import styled from 'styled-components';
+import Layout from '../components/Layout';
+import Profile from '../components/Profile';
+import Portfolio from '../components/Portfolio';
+
+const ProjectsBlock = styled.div`
+  margin-bottom: 2rem;
+  h2 {
+    margin-right: 0.7rem;
+    display: inline-block;
+  }
+  small {
+    cursor: pointer;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+  .portfolios {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 0.3rem;
+    margin-top: 1rem;
+    @media (max-width: 426px) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+`;
 
 const TagsBlock = styled.div`
   margin-bottom: 2rem;
   small + small {
     margin-left: 0.35rem;
   }
-`
+`;
 
 const Article = styled(Link)`
   display: block;
@@ -26,23 +50,49 @@ const Article = styled(Link)`
   p {
     font-size: 0.93rem;
   }
-`
+`;
 
 const Index = ({ data: { allMarkdownRemark: md } }) => {
-  const [filter, setFilter] = useState('all')
+  const [isProjects, setProjects] = useState(true);
+  const [filter, setFilter] = useState('all');
 
   function compareTags(tag1, tag2) {
     return tag1.totalCount > tag2.totalCount
       ? -1
       : tag1.totalCount < tag2.totalCount
       ? 1
-      : 0
+      : 0;
   }
+
+  const onToggle = () => {
+    setProjects(false);
+    sessionStorage.setItem('isProjects', 'false');
+  };
+
+  useEffect(() => {
+    const isProjects = sessionStorage.getItem('isProjects');
+    if (isProjects) setProjects(false);
+  }, []);
 
   return (
     <PageTransition>
       <Layout>
         <Profile />
+        {isProjects && (
+          <ProjectsBlock>
+            <h2>Projects</h2>
+            <small onClick={onToggle}>닫기</small>
+            <div className="portfolios">
+              {md.edges
+                .filter(
+                  ({ node: { frontmatter: fm } }) => fm.type === 'portfolio',
+                )
+                .map(({ node }) => (
+                  <Portfolio key={node.id} node={node} />
+                ))}
+            </div>
+          </ProjectsBlock>
+        )}
         <TagsBlock>
           <small
             key="all"
@@ -62,18 +112,21 @@ const Index = ({ data: { allMarkdownRemark: md } }) => {
           ))}
         </TagsBlock>
         {filter === 'all'
-          ? md.edges.map(({ node }) => (
-              <Article key={node.id} to={node.fields.slug}>
-                <header>
-                  <h2 className="primary">{node.frontmatter.title}</h2>
-                  <small>{node.frontmatter.date}</small>
-                </header>
-                <p>{node.excerpt}</p>
-              </Article>
-            ))
+          ? md.edges
+              .filter(({ node: { frontmatter: fm } }) => fm.type === 'post')
+              .map(({ node }) => (
+                <Article key={node.id} to={node.fields.slug}>
+                  <header>
+                    <h2 className="primary">{node.frontmatter.title}</h2>
+                    <small>{node.frontmatter.date}</small>
+                  </header>
+                  <p>{node.excerpt}</p>
+                </Article>
+              ))
           : md.edges
-              .filter(({ node: { frontmatter: { tags } } }) =>
-                tags.includes(filter)
+              .filter(
+                ({ node: { frontmatter: fm } }) =>
+                  fm.type === 'post' && fm.tags.includes(filter),
               )
               .map(({ node }) => (
                 <Article key={node.id} to={node.fields.slug}>
@@ -86,24 +139,33 @@ const Index = ({ data: { allMarkdownRemark: md } }) => {
               ))}
       </Layout>
     </PageTransition>
-  )
-}
+  );
+};
 
-export default Index
+export default Index;
 
 export const query = graphql`
   query {
-    allMarkdownRemark(
-      sort: { fields: frontmatter___date, order: DESC }
-      filter: { frontmatter: { type: { eq: "post" } } }
-    ) {
+    allMarkdownRemark(sort: { fields: frontmatter___date, order: DESC }) {
       edges {
         node {
           id
           frontmatter {
+            type
             title
             date(formatString: "DD MMMM, YYYY")
+            period
+            demeVideo
+            website
+            github
             tags
+            featuredImage {
+              childImageSharp {
+                fluid(maxWidth: 768) {
+                  ...GatsbyImageSharpFluid
+                }
+              }
+            }
           }
           fields {
             slug
@@ -117,4 +179,4 @@ export const query = graphql`
       }
     }
   }
-`
+`;
