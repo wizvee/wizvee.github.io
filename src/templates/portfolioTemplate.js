@@ -20,15 +20,24 @@ const Container = styled.div`
     display: inline-block;
     margin-bottom: 1rem;
   }
-  ol,
   ul {
     margin-left: 2rem;
-  }
-  li + li {
-    margin-top: 0.5rem;
+    li + li {
+      margin-top: 0.5rem;
+    }
   }
   img {
-    border-radius: 0.5rem;
+    border-radius: 0.5rem !important;
+  }
+
+  ol {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 0.5rem;
+    list-style: none;
+    @media (max-width: 426px) {
+      grid-template-columns: repeat(2, 1fr);
+    }
   }
 `;
 
