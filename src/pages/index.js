@@ -14,14 +14,11 @@ const ProjectsBlock = styled.div`
   }
   small {
     cursor: pointer;
-    &:hover {
-      text-decoration: underline;
-    }
   }
   .portfolios {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    grid-gap: 0.3rem;
+    grid-gap: 0.5rem;
     margin-top: 1rem;
     @media (max-width: 426px) {
       grid-template-columns: repeat(2, 1fr);

@@ -60,13 +60,7 @@ const Container = styled.div`
       }
     }
     @media (max-width: 426px) {
-      a {
-        display: flex;
-      }
-      a + a {
-        margin-left: 0;
-        margin-top: 0.3rem;
-      }
+      display: none;
     }
   }
 `;
