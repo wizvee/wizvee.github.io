@@ -9,7 +9,7 @@ tags: ['React']
 
 Kent C. Dodds는 [colocation 포스팅](https://kentcdodds.com/blog/colocation)에서 state를 localizing 하는 것이 유지 보수에 이득이고 애플리케이션 퍼포먼스도 향상시킨다고 말했습니다. state가 변할 때 모든 애플리케이션 컴포넌트 트리가 re-render 되는 것보단 관련된 애플리케이션 컴포넌트 트리만 re-render 되는 것이 나을 테니까요.
 
-그리고 [State Colocation will make your react app faster](https://kentcdodds.com/blog/state-colocation-will-make-your-react-app-faster)에서 보다 자세한 효과 및 방법을 설명해 주셨는데요, 저는 **Ideveloper** 님께서 번역해 주신 [이 포스팅](https://ideveloper2.dev/blog/2019-10-12--state-colocation-will-make-your-react-app-faster/)을 참고하여 공부했습니다. 🙋‍♀️
+그리고 [State Colocation will make your react app faster](https://kentcdodds.com/blog/state-colocation-will-make-your-react-app-faster)에서 보다 자세한 효과 및 방법을 설명해 주셨는데요, 저는 **Ideveloper** 님께서 번역해 주신 [해당 포스팅](https://ideveloper2.dev/blog/2019-10-12--state-colocation-will-make-your-react-app-faster/)을 참고하여 공부했습니다. 🙋‍♀️
 
 코드를 그대로 적기보다는 제가 이해한 바를 토대로 정리한 내용입니다.
 
@@ -62,7 +62,7 @@ function Foo({ bar, baz }) {
 }
 ```
 
-그러나 위 방법은 `bar`나 `baz`가 객체, 배열 혹은 함수일 때는 적용할 수 없습니다. 이것이 바로 `useCallback`, `useMemo`가 **존재하는 이유**입니다.
+그러나 위 방법은 `bar`나 `baz`가 객체, 배열 혹은 함수일 때는 적용할 수 없습니다. 이것이 바로 `useCallback` 그리고 `useMemo`가 **존재하는 이유**입니다.
 
 ```javascript
 const CountButton = React.memo(function CountButton({ onClick, count }) {
@@ -86,7 +86,7 @@ function DualCounter() {
 
 **복잡한 계산(Computationally expensive calculations)**
 
-`useMemo`는 다음과 같은 경우에도 효과적입니다. 같은 값을 두 번이나 계산할 필요 없이 `useMemo`에 의해 리액트는 값이 필요할 때만 함수를 부르게 됩니다.
+`useMemo`는 다음과 같은 경우에도 효과적입니다. 같은 값을 매 render마다 계산할 필요 없이 `useMemo`에 의해 리액트는 값이 필요할 때만 함수를 부르게 됩니다.
 
 ```javascript
 function RenderPrimes({ iterations, multiplier }) {

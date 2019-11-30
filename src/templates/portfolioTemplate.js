@@ -54,7 +54,7 @@ const FeaturedInfo = styled.div`
     }
     a {
       display: block;
-      margin-left: 1.5rem;
+      margin-left: 1.3rem;
       font-weight: normal;
     }
   }
