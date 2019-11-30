@@ -84,6 +84,13 @@ const GlobalStyle = createGlobalStyle`
  a {
   text-decoration: none;
   color: ${({ theme }) => theme.primary};
+  &::before {
+    content: '🔗';
+    font-size: 0.75rem;
+  }
+  &.none::before {
+    display: none;
+  }
  }
 `;
 
@@ -109,6 +116,7 @@ const ResponsiveBlock = styled.div`
 const Layout = ({ children }) => {
   const [theme, setTheme] = useState(darkTheme);
 
+  // 테마 토글 이벤트 핸들러
   const onToggle = () => {
     if (theme === lightTheme) {
       localStorage.setItem('theme', 'dark');

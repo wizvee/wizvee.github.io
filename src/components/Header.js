@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react'
-import { Link } from 'gatsby'
-import styled from 'styled-components'
-import { lightTheme } from './Layout'
+import React, { useState, useEffect } from 'react';
+import { Link } from 'gatsby';
+import styled from 'styled-components';
+import { lightTheme } from './Layout';
 
 const Container = styled.header`
   display: flex;
@@ -16,7 +16,7 @@ const Container = styled.header`
     height: 40px;
     font-family: 'Lobster';
   }
-`
+`;
 
 const Toggle = styled.div`
   display: flex;
@@ -53,18 +53,18 @@ const Toggle = styled.div`
       transform: translateX(1.5rem);
     }
   }
-`
+`;
 
 export default ({ theme, onToggle }) => {
-  const [pathname, setPathname] = useState('/')
+  const [pathname, setPathname] = useState('/');
 
   useEffect(() => {
-    setPathname(window.location.pathname)
-  }, [])
+    setPathname(window.location.pathname);
+  }, []);
 
   return (
     <Container>
-      <Link to="/">
+      <Link to="/" className="none">
         {pathname === '/' ? (
           <h1>Wizvee.</h1>
         ) : (
@@ -78,5 +78,5 @@ export default ({ theme, onToggle }) => {
         <div className="planet" />
       </Toggle>
     </Container>
-  )
-}
+  );
+};

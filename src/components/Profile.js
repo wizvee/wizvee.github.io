@@ -1,6 +1,6 @@
-import React from 'react'
-import { Link } from 'gatsby'
-import styled, { keyframes } from 'styled-components'
+import React from 'react';
+import { Link } from 'gatsby';
+import styled, { keyframes } from 'styled-components';
 
 const Twist = keyframes`
   0% {
@@ -22,7 +22,7 @@ const Twist = keyframes`
     opacity: 1;
     transform: translateY(0);
   }
-`
+`;
 
 const Container = styled.div`
   padding-bottom: 2rem;
@@ -38,12 +38,12 @@ const Container = styled.div`
     padding-left: 0.2rem;
     font-size: 0.9rem;
   }
-`
+`;
 
 const Profile = () => {
   return (
     <Container>
-      <Link to="/about" className="mark author">
+      <Link to="/about" className="mark author none">
         @wizvee
       </Link>
       <div className="desc">
@@ -55,7 +55,7 @@ const Profile = () => {
         장래에는 풀스택이라는 거목이 되고 싶습니다.
       </div>
     </Container>
-  )
-}
+  );
+};
 
-export default Profile
+export default Profile;

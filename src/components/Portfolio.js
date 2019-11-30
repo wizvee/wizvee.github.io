@@ -68,7 +68,7 @@ const Container = styled.div`
 const Portfolio = ({ node }) => {
   return (
     <Container>
-      <Link to={node.fields.slug}>
+      <Link to={node.fields.slug} className="none">
         <Img
           fluid={node.frontmatter.featuredImage.childImageSharp.fluid}
           alt={node.frontmatter.title}
@@ -80,7 +80,7 @@ const Portfolio = ({ node }) => {
       </Link>
       <div className="portfolio_links">
         <a
-          className="nomal"
+          className="nomal none"
           href={node.frontmatter.website}
           rel="noopener noreferrer"
           target="_blank"
@@ -89,7 +89,7 @@ const Portfolio = ({ node }) => {
           site
         </a>
         <a
-          className="nomal"
+          className="nomal none"
           href={node.frontmatter.github}
           rel="noopener noreferrer"
           target="_blank"
@@ -98,7 +98,7 @@ const Portfolio = ({ node }) => {
           git
         </a>
         <a
-          className="nomal"
+          className="nomal none"
           href={node.frontmatter.demeVideo}
           rel="noopener noreferrer"
           target="_blank"
