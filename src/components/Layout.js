@@ -58,7 +58,7 @@ const GlobalStyle = createGlobalStyle`
   }
   code[class="language-text"] {
     background: ${({ theme }) =>
-      theme === lightTheme ? '#ffe5db' : '#363f5c'};
+      theme === lightTheme ? '#ffe5db' : '#323a60'};
     color: ${({ theme }) => theme.primary};
   }
   &::-webkit-scrollbar {
@@ -86,7 +86,7 @@ const GlobalStyle = createGlobalStyle`
   color: ${({ theme }) => theme.primary};
   &::before {
     content: '🔗';
-    font-size: 0.75rem;
+    font-size: 0.7rem;
   }
   &.none::before {
     display: none;
