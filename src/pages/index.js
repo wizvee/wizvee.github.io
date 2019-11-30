@@ -126,7 +126,7 @@ const Index = ({ data: { allMarkdownRemark: md } }) => {
                   fm.type === 'post' && fm.tags.includes(filter),
               )
               .map(({ node }) => (
-                <Article key={node.id} to={node.fields.slug}>
+                <Article key={node.id} to={node.fields.slug} className="none">
                   <header>
                     <h2 className="primary">{node.frontmatter.title}</h2>
                     <small>{node.frontmatter.date}</small>
