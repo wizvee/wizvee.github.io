@@ -1,8 +1,8 @@
-import React from 'react'
-import { graphql } from 'gatsby'
-import PageTransition from 'gatsby-plugin-page-transitions'
-import styled from 'styled-components'
-import Layout from '../components/Layout'
+import React from 'react';
+import { graphql } from 'gatsby';
+import PageTransition from 'gatsby-plugin-page-transitions';
+import styled from 'styled-components';
+import Layout from '../components/Layout';
 
 const Container = styled.div`
   h1 {
@@ -25,7 +25,10 @@ const Container = styled.div`
   li + li {
     margin-top: 0.7rem;
   }
-`
+  li > ul {
+    list-style: disc;
+  }
+`;
 
 const postTemplate = ({ data: { markdownRemark: post } }) => {
   return (
@@ -38,8 +41,8 @@ const postTemplate = ({ data: { markdownRemark: post } }) => {
         </Container>
       </Layout>
     </PageTransition>
-  )
-}
+  );
+};
 
 export const query = graphql`
   query($slug: String!) {
@@ -51,6 +54,6 @@ export const query = graphql`
       }
     }
   }
-`
+`;
 
-export default postTemplate
+export default postTemplate;
