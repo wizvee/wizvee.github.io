@@ -38,7 +38,7 @@ const GlobalStyle = createGlobalStyle`
   }
   .tags {
     padding: 0.2rem 0.3rem;
-    border-radius: 0.5rem;
+    border-radius: 0.3rem;
     background: ${({ theme }) => theme.text};
     color: ${({ theme }) => theme.body};
     font-size: 0.85rem;

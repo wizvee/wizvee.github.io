@@ -27,7 +27,17 @@ const ProjectsBlock = styled.div`
 `;
 
 const TagsBlock = styled.div`
+  display: flex;
+  flex-wrap: nowrap;
   margin-bottom: 2rem;
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  -ms-overflow-style: -ms-autohiding-scrollbar;
+  small {
+    flex: 0 0 auto;
+    padding: 0 0.3rem;
+  }
   small + small {
     margin-left: 0.35rem;
   }
