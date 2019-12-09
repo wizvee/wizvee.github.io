@@ -60,6 +60,7 @@ const GlobalStyle = createGlobalStyle`
     background: ${({ theme }) =>
       theme === lightTheme ? '#ffe5db' : '#323a60'};
     color: ${({ theme }) => theme.primary};
+    padding: 0.1rem 0.3rem;
   }
   &::-webkit-scrollbar {
     width: 0.4rem;
