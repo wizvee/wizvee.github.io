@@ -221,3 +221,45 @@ const router = new VueRouter({
   ],
 });
 ```
+
+## Vue Template
+
+뷰 템플릿은 HTML, CSS 등의 마크업 속성과 뷰 인스턴스에서 정의한 데이터 및 로직들을 연결하여 사용자가 브라우저에서 볼 수 있는 형태의 HTML로 변환해주는 속성입니다. React의 JSX와 유사합니다.
+
+### single file components
+
+싱글 파일 컴포넌트 체계란 `.vue` 파일로 프로젝트 구조를 구성하는 방식을 말합니다. 확장자 `.vue` 파일 1개는 뷰 애플리케이션을 구성하는 1개의 컴포넌트와 동일합니다.
+
+싱글 파일 컴포넌트 체계를 사용하기 위해서는 .vue 파일을 웹 브라우저가 인식할 수 있는 형태의 파일로 변환해 주는 웹팩과 같은 도구가 필요합니다. 그래서 뷰 개발자들이 편하게 프로젝트를 구성할 수 있도록 **CLI(Command Line Interface)** 도구를 제공합니다.
+
+```bash
+# Vue CLI 전역 설치
+npm install vue-cli -g
+
+# Vue CLI를 사용하여 프로젝트 생성
+vue init <template-name> <project-name>
+```
+
+### Vue Loader
+
+뷰 로더는 웹팩에서 지원하는 라이브러리입니다. 뷰 로더는 싱글 파일 컴포넌트 체계에서 사용하는 .vue 파일의 내용을 브라우저에서 실행 가능한 웹 페이지의 형태로 변환해 줍니다.
+
+```javascript
+module: {
+  rules: [
+    {
+      // 로더가 적용될 대상 파일을 지정
+      test: /\.vue$/,
+      // 적용한 로더의 종류
+      loader: 'vue-loader',
+      options: {
+        loaders: {},
+      },
+    },
+  ];
+}
+```
+
+**기타**
+
+1. .vue 파일에서 `<style>` 태그에 사용되는 `scoped`는 뷰에서 지원하는 속성입니다. 스타일 정의를 해당 컴포넌트에만 적용하겠다는 의미입니다.
