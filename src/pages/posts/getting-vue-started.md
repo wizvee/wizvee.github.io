@@ -19,8 +19,6 @@ Vue 프로젝트를 시작하는 방법에는 두 가지가 있습니다.
 <script src="https://cdn.jsdelivr.net/npm/vue@2.5.2/dist/vue.js"></script>
 ```
 
-처음 개념을 익히는 것이니 CLI로 프로젝트를 구성하는 것보다는 CDN 방식으로 뷰에 익숙해지려고 합니다! 😊
-
 ## Vue Instance
 
 뷰로 웹 애플리케이션을 개발할 때 반드시 알아야 하는 두 가지 요소는 **인스턴스**와 **컴포넌트**입니다. 처음 매뉴얼이나 강의를 봤을 때 해당 개념이 무척 헷갈리기도 했어요. 그래서 포스팅에서 차근차근 정리하면서 개념을 잡아보려고 합니다.
@@ -263,3 +261,63 @@ module: {
 **기타**
 
 1. .vue 파일에서 `<style>` 태그에 사용되는 `scoped`는 뷰에서 지원하는 속성입니다. 스타일 정의를 해당 컴포넌트에만 적용하겠다는 의미입니다.
+
+## Transition
+
+뷰는 항목이 돔에 삽입, 갱신 또는 제거 될 때 트랜지션 효과를 적용하는 다양한 방법을 제공합니다.
+
+### Transitioning Single Elements/Compoenents
+
+뷰는 `transition` 래퍼 컴포넌트를 제공하므로 다음과 같은 상황에서 모든 엘리먼트 또는 컴포넌트에 대한 진입/진출 트랜지션을 추가할 수 있습니다.
+
+```HTML
+<template>
+  <div id="demo">
+    <button v-on:click="show = !show">
+      Toggle
+    </button>
+    <transition name="fade">
+      <p v-if="show">hello</p>
+    </transition>
+  </div>
+</template>
+
+<script>
+  export default {
+    data: {
+      show: true
+    }
+  }
+</script>
+
+<style scoped>
+  .fade-enter-active, .fade-leave-active {
+    transition: opacity .5s;
+  }
+  .fade-enter, .fade-leave-to {
+    opacity: 0;
+  }
+</style>
+```
+
+`transition` 컴포넌트로 싸여진 엘리먼트가 삽입되거나 제거 될 때 일어납니다.
+
+### Transition Classes
+
+진입/진출 트랜지션에는 네 가지 클래스가 적용됩니다.
+
+1. `v-enter`: enter의 시작 상태. 엘리먼트가 삽입되기 전에 적용되고 한 프레임 후에 제거됩니다.
+
+2. `v-enter-active`: enter에 대한 활성 및 종료 상태. 엘리먼트가 삽입되기 전에 적용됩니다. 트랜지션/애니메이션이 완료되면 제거됩니다.
+
+3. `v-enter-to`: **2.1.8 이상 버전에서 지원**합니다. 진입 상태의 끝에서 실행됩니다.
+
+4. `v-leave`: leave를 위한 시작 상태. 진출 트랜지션이 트리거 될 때 적용되고 한 프레임 후에 제거됩니다.
+
+5. `v-leave-active`: leave에 대한 활성 및 종료 상태. 진출 트랜지션이 트리거되면 적용되고 트랜지션/애니메이션이 완료되면 제거됩니다.
+
+6. `v-leave-to`: **2.1.8 이상 버전에서 지원**합니다. 진출 상태의 끝에서 실행됩니다.
+
+### Transitions on Initial Render
+
+노드의 초기 렌더에 트랜지션을 적용하고 싶다면 `appear` 속성을 추가할 수 있습니다.
