@@ -83,9 +83,8 @@ const Index = ({ data: { allMarkdownRemark: md } }) => {
               </Article>
             ))
           : md.edges
-              .filter(
-                ({ node: { frontmatter: fm } }) =>
-                  fm.type === 'post' && fm.tags.includes(filter),
+              .filter(({ node: { frontmatter: { tags } } }) =>
+                tags.includes(filter),
               )
               .map(({ node }) => (
                 <Article key={node.id} to={node.fields.slug} className="none">
