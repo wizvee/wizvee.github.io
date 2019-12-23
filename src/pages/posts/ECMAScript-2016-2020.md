@@ -1,6 +1,6 @@
 ---
 type: "post"
-title: "ES2016부터 ES2019까지 기능 살펴보기"
+title: "ES2016부터 ES2020까지 기능 살펴보기"
 date: "2019-12-19"
 tags: ["Javascript"]
 ---
@@ -135,7 +135,7 @@ async function test() {
 }
 ```
 
-아래 내용은 Naver D2의 [2019년과 이후 JavaScript의 동향](https://d2.naver.com/helloworld/4007447)을 참고하여 공부한 내용입니다.
+아래 내용부터는 Naver D2의 [2019년과 이후 JavaScript의 동향](https://d2.naver.com/helloworld/4007447)을 참고하여 공부하고 정리한 내용입니다.
 
 ## ES2019
 
@@ -171,3 +171,85 @@ Symbol("test").description; // test
 ### Optional catch binding
 
 `try-catch`구문에서 `catch`구문에 매개변수가 사용되지 않으면 매개변수를 생략할 수 있습니다.
+
+## 2020
+
+아래 내용부터는 [New JavaScript Features Coming in ES2020 That You Can Use Now](https://levelup.gitconnected.com/new-features-of-javascript-that-we-can-use-soon-or-now-6199981bd2f)을 참고하여 공부하고 정리한 내용입니다.
+
+### Private Fields in Classes
+
+이제 `#` 기호로 private variable를 설정할 수 있습니다. 이제 private variables를 위해 closures를 사용하지 않아도 됩니다.
+
+```javascript
+class Sample {
+  #x = 0;
+}
+
+const s = new Sample();
+console.log(s.#x);
+// Uncaught SyntaxError: Private field '#x'
+```
+
+### Optional Chaining Operator
+
+깊이 중첩된 객체의 property를 검증할 때, 기존에는 긴 boolean 표현식을 사용해야만 했습니다.
+
+이때 `?.`연산자를 사용하면 체인의 각 참조가 유효한지 명시적으로 검증하지 않고, 연결된 객체 체인 내에 깊숙이 위치한 속성 값을 읽을 수 있습니다. `?.`연산자는 `.`연산자와 유사하게 작동하지만, 만약 참조가 nullish라면 에러가 발생하는 대신 `undefined`를 리턴합니다.
+
+```javascript
+const obj = {
+  prop1: {
+    prop2: {
+      prop3
+    }
+  }
+};
+
+// before
+const nestedProp1 = obj.prop1 && obj.prop2 && obj.prop3;
+// ES2020
+const nestedProp2 = obj.prop1?.prop2?.props3;
+```
+
+다음과 같은 상황에서 `?.`연산자가 유용하게 사용됩니다.
+
+```javascript
+// optional callbacks과 event handler 다루기
+function doSomething(onContent, onError) {
+  try {
+    // ... do something with the data
+  } catch (err) {
+    onError?.(err.message);
+    // no exception if onError is undefined
+  }
+}
+
+// Optional chaining with expressions
+const nestedProp3 = obj?.["prop" + "Name"];
+// Array Item access with optional chaining
+const arrItem = arr?.[42];
+```
+
+### Nullish Coalescing Operator
+
+변수가 `null` 또는 `undefined`인 경우 변수를 설정하기 위해 기본값을 만들어야 할 수 있습니다.
+
+`??`연산자는 왼쪽 피연산자가 `null` 또는 `nudefined`일 때 오른쪽 피연산자를 반환하고, 그렇지 않으면 왼쪽 피연산자를 반환합니다.
+
+```javascript
+// before
+const y1 = x || 500;
+
+// ES2020
+const y2 = x ?? 500;
+```
+
+하지만 `??`연산자는 `||`연산자와는 달리 왼쪽 **falsy**값을 거르지 않으므로 이를 주의해야 합니다.
+
+### BigInt
+
+`BigInt`는 `Number` 원시 값이 안정적으로 나타낼 수 있는 최대치인 2의 53승보다 큰 정수를 표현할 수 있는 내장 객체입니다.
+
+```javascript
+const huge = BigInt(9007199254740991);
+```
