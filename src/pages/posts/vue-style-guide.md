@@ -1,8 +1,8 @@
 ---
-type: "post"
-title: "Vue 스타일 가이드 정리"
-date: "2019-12-19"
-tags: ["Vue"]
+type: 'post'
+title: 'Vue 스타일 가이드 정리'
+date: '2019-12-19'
+tags: ['Vue']
 ---
 
 해당 포스팅은 개인적으로 참고하기 위해 [Vue 스타일 가이드](https://kr.vuejs.org/v2/style-guide/index.html)를 정리한 글입니다. 🙋‍♀️ 그러므로 중요도나 순서보다는 저에게 정리가 필요했던 내용을 위주로 서술되어 있습니다. 😊
@@ -21,7 +21,7 @@ tags: ["Vue"]
 
 **Base 컴포넌트**(a.k.a presentational)에는 특정한 접두어를 붙입니다.
 
-```text
+```bash
 components/
 |- BaseButton.vue
 |- BaseTable.vue
@@ -32,7 +32,7 @@ components/
 
 단일로 활용되는 컴포넌트에는 `The` 접두어를 붙입니다. 이때 대상이 되는 컴포넌트는 단일 페이지에서만 사용되는 컴포넌트를 뜻하는 것은 아닙니다. **페이지마다 오직 한 번만 쓰이는 컴포넌트**를 대상으로 합니다.
 
-```text
+```bash
 components/
 |- TheHeading.vue
 |- TheSidebar.vue
@@ -42,7 +42,7 @@ components/
 
 Children 컴포넌트의 이름은 parent 컴포넌트의 이름과 단단히 결합되어야 합니다. 보통은 **parent 컴포넌트의 이름을 접두어로** 붙입니다.
 
-```text
+```bash
 components/
 |- TodoList.vue
 |- TodoListItem.vue
@@ -57,7 +57,7 @@ components/
 
 컴포넌트 이름에는 형용사 같은 서술어는 뒤로 명사의 뒤에 위치하도록 합니다. 이는 구분하기 쉽게 파일을 정렬하도록 합니다.
 
-```text
+```bash
 components/
 |- SearchButtonClear.vue
 |- SearchButtonRun.vue

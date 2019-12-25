@@ -47,12 +47,10 @@ const Profile = () => {
         @wizvee
       </Link>
       <div className="desc">
-        현재 프런트엔드 개발자를 꿈꾸는 꿈나무입니다!{' '}
+        풀스택을 꿈꾸는 주니어 개발자입니다! {' '}
         <span role="img" aria-label="Smiling Face With Smiling Eyes">
           😊
         </span>
-        <br />
-        장래에는 풀스택이라는 거목이 되고 싶습니다.
       </div>
     </Container>
   );
