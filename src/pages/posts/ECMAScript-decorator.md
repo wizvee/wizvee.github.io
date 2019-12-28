@@ -1,15 +1,15 @@
 ---
-type: "post"
-title: "Javascript Decorators"
-date: "2019-12-27"
-tags: ["JavaScript"]
+type: 'post'
+title: 'Javascript Decorators'
+date: '2019-12-27'
+tags: ['JavaScript']
 ---
 
 **MobX**를 조금씩 건드리면서, 처음으로 자바스크립트의 **decorator**라는 개념을 알게 되었어요. 처음 든 생각은 '자바에서 annotation과 똑같이 생겼잖아? 🤔 비슷한 건가?'였었는데요. 대충 넘어갔다가 면접 질문으로 나왔을 뿐이고, 대답을 제대로 못했을 뿐이고… 😭 처음 봤을 때 개념을 정리해둘걸, 얼마나 후회했는지 모르겠어요.
 
 늦었지만 이제라도 제대로 개념을 정리해두려고 합니다! 👩‍💻
 
-해당 포스팅은 [JavaScript Decorators: What They Are and When to Use Them](https://www.sitepoint.com/javascript-decorators-what-they-are/) 및 [ES7의 decorator](https://blog-kr.zoyi.co/channel-frontend-decorator/)을 참고하여 공부하고 정리하였습니다. 📚
+해당 포스팅은 [JavaScript Decorators: What They Are and When to Use Them](https://www.sitepoint.com/javascript-decorators-what-they-are/)을 참고하여 공부하고 정리하였습니다. 📚
 
 ## What is a Decorator?
 
@@ -19,23 +19,23 @@ tags: ["JavaScript"]
 
 ```javascript
 function doSomething(name) {
-  console.log("Hello, " + name);
+  console.log('Hello, ' + name);
 }
 
 function loggingDecorator(wrapped) {
   return function() {
-    console.log("Starting");
+    console.log('Starting');
     const result = wrapped.apply(this, arguments);
-    console.log("Finished");
+    console.log('Finished');
     return result;
   };
 }
 
 const wrapped = loggingDecorator(doSometing);
 
-doSomething("Graham"); // Hello, Graham
+doSomething('Graham'); // Hello, Graham
 
-wrapped("Graham");
+wrapped('Graham');
 // Starting
 // Hello, Graham
 // Finished
@@ -49,7 +49,7 @@ Decorators는 특별한 syntax를 사용합니다. 접두어로 `@` 심볼을 �
 @log()
 @immutable()
 class Example {
-  @time("demo")
+  @time('demo')
   doSometing() {
     //
   }
@@ -100,7 +100,7 @@ e.b = 2; // TypeError: Cannot assign to read only property 'b' of object
 ```javascript
 function log(target, name, descriptor) {
   const original = descriptor.value;
-  if (typeof original === "function") {
+  if (typeof original === 'function') {
     descriptor.value = function(...args) {
       console.log(`Arguments: ${args}`);
       try {
@@ -135,7 +135,7 @@ e.sum(1, 2);
 function log(name) {
   return function decorator(t, n, descriptor) {
     const original = descriptor.value;
-    if (typeof original === "function") {
+    if (typeof original === 'function') {
       descriptor.value = function(...args) {
         console.log(`Arguments for ${name}: ${args}`);
         try {
@@ -153,7 +153,7 @@ function log(name) {
 }
 
 class Example {
-  @log("some tag")
+  @log('some tag')
   sum(a, b) {
     return a + b;
   }
@@ -220,3 +220,7 @@ console.log(e);
 ## JavaScript Decorators vs. Java Annotation
 
 아래 내용은 [TypeScript and ES2016 Decorators vs. Java Annotations](https://www.beyondjava.net/typescript-and-es2016-decorators-vs-java-annotations)를 참고하여 공부하고 정리한 내용입니다. 💻
+
+### Decorators decorate!
+
+실제로는, decorators는 **함수를 호출**합니다.
