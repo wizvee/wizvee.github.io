@@ -223,4 +223,12 @@ console.log(e);
 
 ### Decorators decorate!
 
-실제로는, decorators는 **함수를 호출**합니다.
+실제로는, decorators는 **함수를 호출**하는 것입니다. `@Component`의 `@` 심볼은 타입스크립트와 자바스크립트에 `Component()` 함수를 호출합니다. 일반적으로 decorator는 함수에 기능성을 추가합니다.
+
+### AOP
+
+이건 **aspect oriented programming**과 거의 동일합니다. 사실, AOP는 Java의 annotations에서 전형적으로 사용되는 사례 중 하나입니다. `@transactional`을 생각해보세요. 이 annotation은 트랜잭션을 실행시키는 데 필요한 glue code로 메서드를 감쌉니다. 다시 말해서, 메서드를 실행하기 전에 트랜잭션을 여는 코드를 더하고, 메서드가 모두 실행되면 트랜잭션을 커밋하거나 롤백하는 코드를 더합니다.
+
+### Oops!
+
+`@` 심볼이 함수를 호출하는 대안이 된 것은 정적 annotations와 AOP를 모두 구현할 수 있는 매우 우아한 방법입니다.
