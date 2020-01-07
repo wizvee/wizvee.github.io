@@ -4,7 +4,6 @@ import PageTransition from 'gatsby-plugin-page-transitions';
 import styled from 'styled-components';
 import Layout from '../components/Layout';
 import Profile from '../components/Profile';
-import Portfolio from '../components/Portfolio';
 
 const TagsBlock = styled.div`
   display: flex;
