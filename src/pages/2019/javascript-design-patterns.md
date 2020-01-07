@@ -1,8 +1,8 @@
 ---
-type: "post"
-title: "Javascript 디자인 패턴들"
-date: "2019-12-30"
-tags: ["JavaScript"]
+type: 'post'
+title: 'Javascript 디자인 패턴들'
+date: '2019-12-30'
+tags: ['JavaScript']
 ---
 
 비전공자로서 개발을 공부하면서 언제나 기초 지식에 목말라 있었는데요. 😢 최근 꾸준히 참여하고 있는 개발자 모임에서 이에 대해 선배 개발자님들께 질문을 드렸을 때, 우선 디자인 패턴에 대해 공부해보라고 조언을 받은 적이 있었어요.
@@ -10,6 +10,8 @@ tags: ["JavaScript"]
 찾아보니 여러 프로그래밍 언어로 디자인 패턴에 대해 정리해 둔 좋은 자료 및 도서가 많았는데요. 두꺼운 기본서를 구입하기 전에! 😅 가볍게 디자인 패턴이 무엇인지 훑어보기 좋은 자료를 찾게 되어, 우선은 디자인 패턴을 눈에 익혀보려고 합니다.
 
 해당 포스팅은 [Writing Maintainable and Readable Javascript: Design Patterns](https://www.javascriptjanuary.com/blog/writing-maintainable-and-readable-javascript-design-patterns)을 참고하여 공부한 내용을 정리하였습니다. 👩‍💻
+
+## What are The Design Patterns?
 
 위키백과에 따르면, 소프트웨어 **디자인 패턴**은 **소프트웨어 공학에서 특정 상황에서 공통적으로 발생하는 문제에 대해 재사용 가능한 해결책**이라고 합니다. 재사용되는 디자인 패턴은 테스트되고 입증된 해결책을 우리에게 제공함으로써 소트프웨어 개발 프로세스에 속도를 더할 수 있습니다.
 
@@ -37,7 +39,7 @@ class Car {
   }
 }
 
-let mondeo = new Car("Ford Mondeo", 2010, 5000);
+let mondeo = new Car('Ford Mondeo', 2010, 5000);
 console.log(mondeo.toString()); // Ford Mondeo has done 5000 miles
 ```
 
@@ -67,7 +69,7 @@ class Rabbit extends Animal {
   }
 }
 
-let rabbit = new Rabbit("White Rabbit");
+let rabbit = new Rabbit('White Rabbit');
 rabbit.run(5); // White rabbit runs with speed 5.
 rabbit.hide(); // White rabbit hides!
 ```
@@ -91,8 +93,8 @@ class Car {
 export default Car;
 
 // main.js
-import Car from "./car.js";
-let mondeo = new Car("Ford Mondeo", 2010, 5000);
+import Car from './car.js';
+let mondeo = new Car('Ford Mondeo', 2010, 5000);
 console.log(mondeo.toString()); // Ford Mondeo has done 5000 miles
 ```
 
@@ -118,8 +120,8 @@ class Car {
   }
 }
 
-let civic = new Car("Honda Civic", 2009, 20000);
-let mondeo = new Car("Ford Mondeo", 2010, 5000);
+let civic = new Car('Honda Civic', 2009, 20000);
+let mondeo = new Car('Ford Mondeo', 2010, 5000);
 
 console.log(civic.toString()); // Honda Civic has done 20000 miles
 console.log(mondeo.toString()); // Honda Civic has done 20000 miles
@@ -236,11 +238,11 @@ class TaskServiceFacade extends TaskService {
 }
 
 let myTask = new TaskServiceFacade({
-  name: "MyTask",
+  name: 'MyTask',
   priority: 1,
-  project: "Courses",
-  user: "Jon",
-  complted: false
+  project: 'Courses',
+  user: 'Jon',
+  complted: false,
 });
 console.log(myTask.completeAndNofity());
 // completing task: MyTask
