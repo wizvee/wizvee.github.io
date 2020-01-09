@@ -57,10 +57,11 @@ const GlobalStyle = createGlobalStyle`
     color: ${({ theme }) => theme.primary};
   }
   code[class="language-text"] {
-    background: ${({ theme }) =>
-      theme === lightTheme ? '#ffe5db' : '#323a60'};
+    padding: 1px 3px;
+    border: 1px solid ${({ theme }) => theme.primary};
+    background:${({ theme }) => theme.body};
     color: ${({ theme }) => theme.primary};
-    padding: 0.1rem 0.3rem;
+    font-size: 0.85rem;
   }
   &::-webkit-scrollbar {
     width: 0.4rem;
