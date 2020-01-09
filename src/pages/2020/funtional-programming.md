@@ -204,7 +204,7 @@ console.log(sub10(5)); // -5
 위에서 정의한 `_map` 함수를 보다 간결하게 이용하기 위하여, 커링을 활용해 `_get` 함수를 정의할 수 있습니다.
 
 ```javascript
-let _get = _curryr((obj, key) => (obj === null ? undefined : obj[key]));
+let _get = _curryr((obj, key) => (obj == null ? undefined : obj[key]));
 
 const users = [
   { id: 1, name: 'AA', age: 30 },
@@ -241,6 +241,39 @@ _go(
   console.log,
 ); // ["AA"]
 ```
+
+### Exception
+
+함수형 프로그래밍에서는 예외 처리를 위하여 `typeof` 연산자나 `try...catch` 구문을 사용하는 등의 방식을 선호하지 않습니다. 다음은 `_each` 함수를 개선하여 `nullish` 값일 때에도 에러가 나지 않도록 개선하는 코드입니다.
+
+```javascript
+function _is_object(obj) {
+  return typeof obj == 'object' && !!obj;
+}
+
+function _keys(obj) {
+  return _is_object(obj) ? Object.keys(obj) : [];
+}
+
+function _each(list, iter) {
+  const keys = _keys(list);
+  for (let i = 0; i < keys.length; i++) {
+    iter(list[keys[i]]);
+  }
+  return list;
+}
+
+_each(
+  {
+    13: 'ID',
+    19: 'AS',
+    44: 'YD',
+  },
+  name => console.log(name.toLowerCase()),
+); // ["id", "as", "yd"]
+```
+
+이렇듯 함수형 프로그래밍에서는 예외 처리를 통하여 다형성을 높혀, 함수를 연속적으로 실행하는 것에 무리가 없도록 프로그래밍합니다.
 
 ## 컬렉션 중심 프로그래밍
 
