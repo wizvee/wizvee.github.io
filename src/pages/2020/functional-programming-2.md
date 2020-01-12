@@ -86,10 +86,54 @@ console.log(_compact([1, 2, 0, null, undefined, {}]));
 // [1, 2, {}]
 ```
 
-처음 `_identity` 함수를 볼 때, '도대체 뭐에 쓰는 함수일까?' 생각했었는데요.
+### 찾아내기
 
-3. 찾아내기: `find`, `some`, `every` 등
-4. 접기: `reduce`, `min`, `max`, `group_by`, `count_by` 등
+`find` 함수가 대표적입니다. 특화 함수로는 `find_index`, `some` 그리고 `every` 함수 등이 있습니다.
+
+```javascript
+function _find(list, predi) {
+  const keys = _keys(list); // 다형성을 높이기 위함
+  for (let i = 0; i < keys.length; i++) {
+    let val = list[keys[i]];
+    if (predi(val)) return val;
+  }
+}
+
+function _find_index(list, predi) {
+  const keys = _keys(list); // 다형성을 높이기 위함
+  for (let i = 0; i < keys.length; i++) {
+    let val = list[keys[i]];
+    if (predi(val)) return i;
+  }
+  return -1;
+}
+
+// some은 list 중에 predi한 값이 하나라도 있을 때
+// true를 반환
+function _some(list, predi) {
+  return _find_index(list, predi || _identity) != -1;
+}
+
+// every는 list 모두가 predi할 때 true를 반환
+function _every(list, predi) {
+  return _find_index(list, _negate(predi || _identity)) != -1;
+}
+```
+
+### 접기
+
+`reduce` 함수가 대표 함수입니다. 특화 함수로는 `min`, `max`, `group_by` 그리고 `count_by` 등이 있습니다.
+
+```javascript
+function _reduce(list, iter, memo) {
+  if (arguments.length == 2) {
+    memo = list[0];
+    list = Array.prototype.slice.call(list, 1);
+  }
+  _each(list, val => (memo = iter(memo, val)));
+  return memo;
+}
+```
 
 ## 자바스크립트에서의 지연 평가
 
