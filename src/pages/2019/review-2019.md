@@ -1,8 +1,8 @@
 ---
-type: "post"
-title: "2019년 짧은 회고"
-date: "2020-01-02"
-tags: ["Essay"]
+type: 'post'
+title: '2019년 짧은 회고'
+date: '2020-01-02'
+tags: ['Essay']
 ---
 
 ## 2019년에 완독한 책들

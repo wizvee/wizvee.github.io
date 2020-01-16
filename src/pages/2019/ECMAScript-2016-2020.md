@@ -1,8 +1,8 @@
 ---
-type: "post"
-title: "ES2016부터 ES2020까지 기능 살펴보기"
-date: "2019-12-19"
-tags: ["JavaScript"]
+type: 'post'
+title: 'ES2016부터 ES2020까지 기능 살펴보기'
+date: '2019-12-19'
+tags: ['JavaScript']
 ---
 
 자바스크립트의 표준을 정의하는 **ECMAScript**. ES2015에서 자바스크립트는 엄청난 변화를 맞이했었는데요. 지금까지 리액트와 뷰를 다루면서 ES2015에는 어느 정도 익숙해졌지만, ES2016부터 추가된 기능들에 대해서는 모르는 부분이 많더라고요. 😢
@@ -58,8 +58,8 @@ console.log(Object.entries(cars));
 `String.prototype.padStart`와 `String.prototype.padEnd`는 문자열의 앞과 뒤에 특정한 문자열을 추가합니다. 이때 매개변수로 설정한 목표 문자열 길이만큼 채워집니다.
 
 ```javascript
-"a".padStart(5); // '     a'
-"a".padEnd(5, "-"); // '----a'
+'a'.padStart(5); // '     a'
+'a'.padEnd(5, '-'); // '----a'
 ```
 
 ### Object.getOwnPropertyDescriptors
@@ -67,8 +67,8 @@ console.log(Object.entries(cars));
 `Object.getOwnPropertyDescriptor()`는 객체 속성에 대한 설명자를 반환합니다.
 
 ```javascript
-const person = { name: "wizvee", age: 30 };
-console.log(Object.getOwnPropertyDescriptor(person, "name"));
+const person = { name: 'wizvee', age: 30 };
+console.log(Object.getOwnPropertyDescriptor(person, 'name'));
 // {value: "wizvee", writable: true, enumerable: true, configurable: true}
 ```
 
@@ -112,11 +112,11 @@ function doubleAfter1Sec(param) {
 
 ```javascript
 let myPromise = new Promise(function(resolve, reject) {
-  throw new Error("something happend");
+  throw new Error('something happend');
 })
   .then(val => console.log(val))
   .catch(e => console.log(e))
-  .finally(() => console.log("This function is always executed!"));
+  .finally(() => console.log('This function is always executed!'));
 ```
 
 ### For-Await-Of
@@ -127,7 +127,7 @@ let myPromise = new Promise(function(resolve, reject) {
 const promises = [
   new Promise(resolve => resolve(1)),
   new Promise(resolve => resolve(2)),
-  new Promise(resolve => resolve(3))
+  new Promise(resolve => resolve(3)),
 ];
 
 async function test() {
@@ -156,7 +156,7 @@ arr.flat(2); // [1, 2, 3, 4, 5, 6]
 `Object.fromEntries()`메서드는 키값 쌍의 목록을 객체로 바꿉니다.
 
 ```javascript
-const entries = new Map(["foo", "bar"], ["baz", 42]);
+const entries = new Map(['foo', 'bar'], ['baz', 42]);
 console.log(Object.fromEntries(entries)); // {foo: "bar", baz: 42}
 ```
 
@@ -165,7 +165,7 @@ console.log(Object.fromEntries(entries)); // {foo: "bar", baz: 42}
 `Symbol`객체의 선택 매개변수인 `description`값을 반환하는 읽기 전용 속성입니다.
 
 ```javascript
-Symbol("test").description; // test
+Symbol('test').description; // test
 ```
 
 ### Optional catch binding
@@ -200,9 +200,9 @@ console.log(s.#x);
 const obj = {
   prop1: {
     prop2: {
-      prop3
-    }
-  }
+      prop3,
+    },
+  },
 };
 
 // before
@@ -225,7 +225,7 @@ function doSomething(onContent, onError) {
 }
 
 // Optional chaining with expressions
-const nestedProp3 = obj?.["prop" + "Name"];
+const nestedProp3 = obj?.['prop' + 'Name'];
 // Array Item access with optional chaining
 const arrItem = arr?.[42];
 ```
