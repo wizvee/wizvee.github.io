@@ -141,3 +141,96 @@ Promise.resolve()
 위 예제는 어떻게 동작한 것일까요? 프로미스도 백그라운드 API니 태스크 큐에 추가되어 순서대로 실행돼야 하지 않았을까요? 이는 **프로미스로부터 전달된 콜백 함수는 별도의 마이크로 태스크 큐(micro task queue)에 쌓이고, 이벤트 루프는 호출 스택이 비었을 때 태스크 큐보다 우선적으로 마이크로 태스크 큐를 수행하기 때문**입니다.
 
 실재로 태스크가 마이크로 태스크냐 일반 태스크냐에 따라 실행되는 타이밍이 달라지기 때문에 둘을 제대로 이해하고 구분해서 사용하는 것이 중요합니다. 예를 들어 마이크로 태스크가 계속돼서 실행될 경우 일반 태스크인 UI 렌더링이 지연되는 현상이 발생할 수도 있을 것입니다.
+
+### Variable Hoisting
+
+**호이스팅**이란 `var` 선언문이나 `function` 선언문 등 모든 선언문이 해당 `scope`의 선두로 옮겨진 것처럼 동작하는 특성을 말합니다.
+
+변수는 3단계에 걸쳐 생성됩니다.
+
+1. **선언** 단계(Declaration phase): 변수 객체에 변수를 등록합니다. 이 변수 객체는 스코프가 참조하는 대상이 됩니다.
+
+2. **초기화** 단계(Initialization phase): 변수 객체에 등록된 변수를 메모리에 할당합니다. 이 단계에서 변수는 `undefined`로 초기화됩니다.
+
+3. **할당** 단계(Assignment phase): `undefined`로 초기화된 변수에 실제 값을 할당합니다.
+
+`var` 키워드로 선언된 변수는 선언 단계와 초기화 단계가 한번에 이루어집니다. 따라서 변수 선언문 이전에 변수에 접근해도 변수 객체에 변수가 존재하기 때문에 에러가 발생하지 않으며, 다만 `undefined`를 반환하게 됩니다.
+
+그러나 `let`이나 `const` 키워드로 선언한 변수는 선언 단계 후 **초기화되지 않습니다.** 따라서 변수 선언문 이전에 변수에 접근하게 되면, `ReferenceError`가 발생하게 됩니다.
+
+```javascript
+function introduce() {
+  console.log(name);
+  console.log(age);
+
+  var name = 'Wizvee';
+  let age = 31;
+}
+
+introduce();
+// undefined
+// Uncaught ReferenceError
+```
+
+### this Keyword
+
+자바스크립트 함수에서 `this` 키워드는 다른 언어와 조금 다르게 동작합니다. 또한 `strict mode`와 `none-strict mode`에서도 차이가 있습니다. 대부분의 경우에 `this`의 값은 **함수를 어떻게 호출했느냐**에 따라 결정됩니다. 또한 ES5에서는 `this`를 바인딩할 수 있는 `bind()` 메서드를, ES6에서는 `this`를 바인딩하지 않는 `arrow functions`를 도입했습니다.
+
+`this`가 바인딩되는 경우 수는 다음과 같습니다.
+
+#### Global context
+
+어떤 함수에도 속하지 않았을 때, `this`는 `strict mode`에 관계없이 전역 객체(global objet)를 참조합니다. 이때 전역 객체는 browser-side에서는 `window`를, server-side에서는`global`를 가리킵니다.
+
+#### Function context
+
+함수 내에서 `this`의 값은 함수가 어떻게 호출되었느냐에 따라 결정됩니다. `strict mode`가 아닐 때, `this`는 기본적으로 **전역 객체에 바인딩** 됩니다. 전역 함수는 물론, 내부 함수의 경우에도 `this`는 외부 함수가 아닌 전역 객체에 바인딩 됩니다.
+
+#### The bind method
+
+ES5에서는 `Function.prototype.bind`를 도입했습니다. `f.bind(someObject)`를 호출하면, `f`와 같은 본문과 범위를 가졌지만 `this`는 원본 함수를 가진 새로운 함수를 생성합니다.
+
+```javascript
+function f() {
+  return this.a;
+}
+
+var g = f.bind({ a: 'azerty' });
+console.log(g()); // azerty
+
+var h = g.bind({ a: 'yoo' });
+console.log(g()); // azerty
+// bind는 한 번만 사용 가능
+```
+
+#### Arrow functions
+
+화살표 함수에서 `this`는 자신을 감싼 `lexical context`입니다. 전역 코드에서는 전역 객체를 가리킵니다.
+
+```javascript
+const shape = {
+  radius: 10,
+  diameter: () => this.radius * 2,
+};
+
+console.log(shape.diameter());
+// NaN
+// 이때 this는 shape 객체가 아닌
+// window를 참조합니다.
+```
+
+#### As an object method
+
+객체의 메서드로서 함수가 호출될 때, `this`는 호출한 객체에 바인딩 됩니다.
+
+#### As a constructor
+
+`new` 키워드와 함께 생성자 함수로써 호출될 때, `this`는 새로 생성된 객체에 바인딩 됩니다.
+
+#### As a DOM event handler
+
+함수가 이벤트 핸들러로써 사용될 때, `this`는 이벤트가 발생한 요소에 바인딩 됩니다.
+
+#### As an inline event handler
+
+인라인 이벤트 핸들러 코드 내에서, `this`는 해당하는 리스너가 위치하는 DOM 요소에 바인딩 됩니다.
