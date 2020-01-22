@@ -107,10 +107,10 @@ const ResponsiveBlock = styled.div`
 
   /* 브라우저 크기에 따라 가로 크기 변경 */
   @media (max-width: 768px) {
-    padding: 0 3rem;
+    padding: 0 2rem;
   }
   @media (max-width: 426px) {
-    padding: 0 2rem;
+    padding: 0 1rem;
     width: 100%;
   }
 `;
