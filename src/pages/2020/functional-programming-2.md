@@ -122,7 +122,7 @@ function _every(list, predi) {
 
 ### 접기
 
-`reduce` 함수가 대표 함수입니다. 특화 함수로는 `min`, `max`, `group_by` 그리고 `count_by` 등이 있습니다.
+`reduce` 함수가 대표 함수입니다. 특화 함수로는 `min`, `max`, `group_by` 그리고 `count_by` 등이 있습니다. 단순한 for문의 업그레이드가 아닌, reduce 함수를 보다 함수형 프로그래밍 관점에서 사용하는 것이 중요합니다.
 
 ```javascript
 function _reduce(list, iter, memo) {
@@ -132,6 +132,26 @@ function _reduce(list, iter, memo) {
   }
   _each(list, val => (memo = iter(memo, val)));
   return memo;
+}
+
+function _min(data) {
+  return _reduce(data, (a, b) => (a < b ? a : b));
+}
+
+function _max(data) {
+  return _reduce(data, (a, b) => (a > b ? a : b));
+}
+```
+
+아래 함수들은 보조 함수가 있기 때문에 다형성이 높은 함수입니다.
+
+```javascript
+function _min_by(data, iter) {
+  return _reduce(data, (a, b) => (iter(a) < iter(b) ? a : b));
+}
+
+function _max_by(data, iter) {
+  return _reduce(data, (a, b) => (iter(a) > iter(b) ? a : b));
 }
 ```
 

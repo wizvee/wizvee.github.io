@@ -5,7 +5,7 @@ date: '2019-12-19'
 tags: ['Vue']
 ---
 
-해당 포스팅은 개인적으로 참고하기 위해 [Vue 스타일 가이드](https://kr.vuejs.org/v2/style-guide/index.html)를 정리한 글입니다. 🙋‍♀️ 그러므로 중요도나 순서보다는 저에게 정리가 필요했던 내용을 위주로 서술되어 있습니다. 😊
+해당 포스팅은 개인적으로 참고하기 위해 [Vue 스타일 가이드](https://kr.vuejs.org/v2/style-guide/index.html)를 정리한 글입니다. 그러므로 중요도나 순서보다는 저에게 정리가 필요했던 내용을 위주로 서술되어 있습니다. 😊
 
 ## How to Structure Components
 
