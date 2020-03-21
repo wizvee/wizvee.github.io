@@ -43,11 +43,11 @@ const Container = styled.div`
 const Profile = () => {
   return (
     <Container>
-      <Link to="/about" className="mark author none">
+      <Link to="/" className="mark author none">
         @wizvee
       </Link>
       <div className="desc">
-        풀스택을 꿈꾸는 주니어 개발자입니다! {' '}
+        풀스택을 꿈꾸는 주니어 개발자입니다!{' '}
         <span role="img" aria-label="Smiling Face With Smiling Eyes">
           😊
         </span>

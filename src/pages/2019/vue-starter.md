@@ -31,6 +31,28 @@ vue init <template-name> <project-name>
 
 이렇게 쉽게 적용할 수 있는 점이 뷰의 가장 큰 매력 같아요. 😃
 
+### CLI 2.x vs 3.x
+
+1. **명령어**
+
+   - 2.x: `vue init [template-name] [project-name]`
+   - 3.x: `vue create [project-name]`
+
+2. **webpack config file**
+
+   - 2.x: 노출 O
+   - 3.x: 노출 X
+
+3. **project structure**
+
+   - 2.x: download template at github
+   - 3.x: add plugin
+
+4. **ES6**
+
+   - 2.x: 필요 O
+   - 3.x: 필요 X
+
 ## Vue Instance
 
 뷰로 웹 애플리케이션을 개발할 때 반드시 알아야 하는 두 가지 요소는 **인스턴스**와 **컴포넌트**입니다. 개인적으로 헛갈렸던 개념이기도 해요. 그래서 포스팅에서 차근차근 정리하면서 개념을 잡아보려고 합니다.
@@ -53,12 +75,19 @@ new Vue({
 뷰의 인스턴스는 생성될 때 일련의 초기화 단계를 거칩니다. 그 과정에서 사용자 정의 로직을 실행할 수 있는 **라이프사이클 훅**도 호출됩니다. 라이프사이클 훅의 종류는 다음과 같습니다.
 
 1. `beforeCreate`
+
 2. `created`: data 속성과 methods 속성에 접근할 수 있는 가장 첫 라이프 사이클 단계이자 컴포넌트가 생성되고 나서 실행되는 첫 단계입니다. 때문에 **서버에 데이터를 요청해서 받아오는 로직**을 수행하기에 알맞습니다. 다만 아직 가상 돔에는 **요소들이 그려지지 않았어요.**
+
 3. `beforeMount`
+
 4. `mounted`: 가상 돔에 **요소들이 그려진 단계**입니다. 이제 요소를 제어할 수 있습니다. 개인적으로는 리액트 훅에서 `useEffect`와 유사한 느낌이에요. 😎
+
 5. `beforeUpdate`
+
 6. `updated`: 데이터가 변경되고 나서 가상 돔으로 다시 화면을 그리고 나면 실행되는 단계입니다. 따라서 **데이터 변경 후 화면 요소 제어와 관련된 로직**을 추가하기에 좋습니다.
+
 7. `beforeDestroy`
+
 8. `destroyed`
 
 ```javascript
