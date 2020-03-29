@@ -1,13 +1,9 @@
 import React from 'react';
 import { graphql } from 'gatsby';
-import PageTransition from 'gatsby-plugin-page-transitions';
 import styled from 'styled-components';
 import Layout from '../components/Layout';
 
 const Container = styled.div`
-  h1 {
-    font-family: 'Binggrae-Bold';
-  }
   h2 {
     margin: 2rem 0 1rem;
   }
@@ -32,15 +28,13 @@ const Container = styled.div`
 
 const postTemplate = ({ data: { markdownRemark: post } }) => {
   return (
-    <PageTransition>
-      <Layout>
-        <Container>
-          <h1>{post.frontmatter.title}</h1>
-          <small>{post.frontmatter.date}</small>
-          <div dangerouslySetInnerHTML={{ __html: post.html }} />
-        </Container>
-      </Layout>
-    </PageTransition>
+    <Layout>
+      <Container>
+        <h1>{post.frontmatter.title}</h1>
+        <small>{post.frontmatter.date}</small>
+        <div dangerouslySetInnerHTML={{ __html: post.html }} />
+      </Container>
+    </Layout>
   );
 };
 

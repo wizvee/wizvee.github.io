@@ -1,5 +1,5 @@
 ---
-type: 'post'
+# type: 'post'
 title: 'REST API에 대하여'
 date: '2019-12-03'
 tags: ['REST']

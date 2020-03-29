@@ -1,5 +1,5 @@
 ---
-type: 'post'
+# type: 'post'
 title: 'Spring Framework 개념 정리'
 date: '2019-12-04'
 tags: ['Spring']

@@ -1,5 +1,5 @@
 ---
-type: 'post'
+# type: 'post'
 title: 'SOLID 원칙'
 date: '2019-12-10'
 tags: ['Programming']

@@ -1,6 +1,7 @@
 ---
-type: 'post'
-title: '자바스크립트 이해하기'
+type: 'series'
+topic: 'JavaScript 이해하기'
+title: 'Runtime & Event Loop'
 date: '2020-01-09'
 tags: ['JavaScript']
 ---
@@ -171,66 +172,3 @@ introduce();
 // undefined
 // Uncaught ReferenceError
 ```
-
-### this Keyword
-
-자바스크립트 함수에서 `this` 키워드는 다른 언어와 조금 다르게 동작합니다. 또한 `strict mode`와 `none-strict mode`에서도 차이가 있습니다. 대부분의 경우에 `this`의 값은 **함수를 어떻게 호출했느냐**에 따라 결정됩니다. 또한 ES5에서는 `this`를 바인딩할 수 있는 `bind()` 메서드를, ES6에서는 `this`를 바인딩하지 않는 `arrow functions`를 도입했습니다.
-
-`this`가 바인딩되는 경우 수는 다음과 같습니다.
-
-#### Global context
-
-어떤 함수에도 속하지 않았을 때, `this`는 `strict mode`에 관계없이 전역 객체(global objet)를 참조합니다. 이때 전역 객체는 browser-side에서는 `window`를, server-side에서는`global`를 가리킵니다.
-
-#### Function context
-
-함수 내에서 `this`의 값은 함수가 어떻게 호출되었느냐에 따라 결정됩니다. `strict mode`가 아닐 때, `this`는 기본적으로 **전역 객체에 바인딩** 됩니다. 전역 함수는 물론, 내부 함수의 경우에도 `this`는 외부 함수가 아닌 전역 객체에 바인딩 됩니다.
-
-#### The bind method
-
-ES5에서는 `Function.prototype.bind`를 도입했습니다. `f.bind(someObject)`를 호출하면, `f`와 같은 본문과 범위를 가졌지만 `this`는 원본 함수를 가진 새로운 함수를 생성합니다.
-
-```javascript
-function f() {
-  return this.a;
-}
-
-var g = f.bind({ a: 'azerty' });
-console.log(g()); // azerty
-
-var h = g.bind({ a: 'yoo' });
-console.log(g()); // azerty
-// bind는 한 번만 사용 가능
-```
-
-#### Arrow functions
-
-화살표 함수에서 `this`는 자신을 감싼 `lexical context`입니다. 전역 코드에서는 전역 객체를 가리킵니다.
-
-```javascript
-const shape = {
-  radius: 10,
-  diameter: () => this.radius * 2,
-};
-
-console.log(shape.diameter());
-// NaN
-// 이때 this는 shape 객체가 아닌
-// window를 참조합니다.
-```
-
-#### As an object method
-
-객체의 메서드로서 함수가 호출될 때, `this`는 호출한 객체에 바인딩 됩니다.
-
-#### As a constructor
-
-`new` 키워드와 함께 생성자 함수로써 호출될 때, `this`는 새로 생성된 객체에 바인딩 됩니다.
-
-#### As a DOM event handler
-
-함수가 이벤트 핸들러로써 사용될 때, `this`는 이벤트가 발생한 요소에 바인딩 됩니다.
-
-#### As an inline event handler
-
-인라인 이벤트 핸들러 코드 내에서, `this`는 해당하는 리스너가 위치하는 DOM 요소에 바인딩 됩니다.

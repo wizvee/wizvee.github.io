@@ -1,6 +1,6 @@
 ---
 type: 'post'
-title: 'Javascript Decorators'
+title: 'ECMAScript Decorators'
 date: '2019-12-27'
 tags: ['JavaScript']
 ---

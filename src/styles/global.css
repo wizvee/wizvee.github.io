@@ -1,24 +1,26 @@
 @font-face {
-  font-family: 'NanumSquareRound';
-  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/NanumSquareRound.woff') format('woff');
+  font-family: 'S-CoreDream-4Regular';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/S-CoreDream-4Regular.woff') format('woff');
   font-weight: normal;
   font-style: normal;
 }
 
 @font-face {
-  font-family: 'Binggrae-Bold';
-  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_one@1.0/Binggrae-Bold.woff') format('woff');
+  font-family: 'S-CoreDream-9Black';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/S-CoreDream-9Black.woff') format('woff');
   font-weight: normal;
   font-style: normal;
 }
 
-@import url('https://fonts.googleapis.com/css?family=Fira+Code|Lobster&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@500&display=swap');
 
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'NanumSquareRound';
+  font-family: 'S-CoreDream-4Regular';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 body {
@@ -28,7 +30,7 @@ body {
 h1,
 h2,
 h3 {
-  font-family: 'Binggrae-Bold';
+  font-family: 'S-CoreDream-9Black';
 }
 
 p {
@@ -38,7 +40,8 @@ p {
 .gatsby-highlight pre[class*="language-"],
 .gatsby-highlight code[class*="language-"] {
   border-radius: 0.5rem;
-  font-family: 'Fira Code', 'NanumSquareRound';
+  font-family: 'Fira Code', 'S-CoreDream-4Regular';
+  text-shadow: none;
 }
 
 .gatsby-highlight pre[class*="language-"]::-webkit-scrollbar {

@@ -1,5 +1,5 @@
 ---
-type: 'summaries'
+# type: 'post'
 title: 'JPA 익히기'
 date: '2020-03-20'
 tags: ['JPA']

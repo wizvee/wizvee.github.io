@@ -10,6 +10,7 @@ module.exports = {
     `gatsby-transformer-remark`,
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
+    `gatsby-plugin-lodash`,
     {
       resolve: `gatsby-source-filesystem`,
       options: {
@@ -25,6 +26,7 @@ module.exports = {
             resolve: `gatsby-remark-images`,
             options: {
               maxWidth: 768,
+              linkImagesToOriginal: false,
             },
           },
           {
@@ -57,12 +59,6 @@ module.exports = {
             },
           },
         ],
-      },
-    },
-    {
-      resolve: `gatsby-plugin-page-transitions`,
-      options: {
-        transitionTime: 700,
       },
     },
     {

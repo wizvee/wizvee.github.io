@@ -2,28 +2,14 @@ import React, { useState, useEffect } from 'react';
 import styled, { createGlobalStyle } from 'styled-components';
 import Header from './Header';
 import Footer from './Footer';
+import { lightTheme } from '../styles/palette';
 
-// 테마 객체 생성
-export const darkTheme = {
-  body: '#292d3e',
-  text: '#a6accd',
-  primary: '#c792ea',
-  second: '#f9c76a',
-  third: '#c3e88d',
-};
-
-export const lightTheme = {
-  body: '#f3f2e9',
-  text: '#7d7069',
-  primary: '#ff6969',
-  second: '#f7a54a',
-  third: '#98c05d',
-};
+const darkTheme = {};
 
 const GlobalStyle = createGlobalStyle`
  /* 글로벌 스타일 설정 */
  body {
-  background: ${({ theme }) => theme.body};
+  background: ${({ theme }) => theme.base};
   color: ${({ theme }) => theme.text};
   font-size: 1rem;
   .primary {
@@ -33,16 +19,8 @@ const GlobalStyle = createGlobalStyle`
     color: ${({ theme }) => theme.text};
   }
   .mark {
-    background: ${({ theme }) => theme.second};
-    color: ${({ theme }) => theme.body};
-  }
-  .tags {
-    padding: 0.2rem 0.3rem;
-    border-radius: 0.3rem;
-    background: ${({ theme }) => theme.text};
-    color: ${({ theme }) => theme.body};
-    font-size: 0.85rem;
-    cursor: pointer;
+    /* background: ${({ theme }) => theme.second}; */
+    color: ${({ theme }) => theme.base};
   }
   .selected {
     background: ${({ theme }) => theme.primary};
@@ -57,18 +35,47 @@ const GlobalStyle = createGlobalStyle`
     color: ${({ theme }) => theme.primary};
   }
   code[class="language-text"] {
-    padding: 1px 3px;
-    border: 1px solid ${({ theme }) => theme.primary};
-    background:${({ theme }) => theme.body};
-    color: ${({ theme }) => theme.primary};
-    font-size: 0.85rem;
+    padding: 0 0.25rem;
+    font-size: 0.9rem;
+    font-family: 'Fira Code', 'S-CoreDream-4Regular';
+    background: ${({ theme }) => theme.text};
+    color: ${({ theme }) => theme.base};
+    text-shadow: none;
   }
+  div.gatsby-highlight pre {
+    background: ${({ theme }) => theme.base};
+    box-shadow: inset 4px 4px 8px ${lightTheme.shadow_dark},
+      inset -4px -4px 8px ${lightTheme.shadow_light};
+      span {
+        font-family: 'Fira Code', 'S-CoreDream-4Regular';
+      }
+      span.comment {
+        color: ${({ theme }) => theme.text};
+        font-size: 0.95rem;
+      }
+      span.operator {
+        background: ${({ theme }) => theme.base};
+      }
+  }
+  span.gatsby-resp-image-wrapper {
+    border-radius: 0.3rem;
+    border: 0.3rem solid ${({ theme }) => theme.base};
+    background: ${({ theme }) => theme.base};
+    box-shadow: 4px 4px 8px ${lightTheme.shadow_dark},
+    -4px -4px 8px ${lightTheme.shadow_light};
+    overflow: hidden;
+    img {
+        border-radius: 0.3rem;
+      }
+  }
+
+
   &::-webkit-scrollbar {
     width: 0.4rem;
     height: 0.4rem;
   }
   &::-webkit-scrollbar-track {
-    background-color: ${({ theme }) => theme.body};
+    background-color: ${({ theme }) => theme.base};
   }
   &::-webkit-scrollbar-thumb {
     background-color: ${({ theme }) => theme.text};
@@ -78,21 +85,14 @@ const GlobalStyle = createGlobalStyle`
   color: ${({ theme }) => theme.primary};
  }
  h2 {
-  color: ${({ theme }) => theme.second};
+  /* color: ${({ theme }) => theme.second}; */
  }
  h3 {
-  color: ${({ theme }) => theme.third};
+  /* color: ${({ theme }) => theme.third}; */
  }
  a {
   text-decoration: none;
   color: ${({ theme }) => theme.primary};
-  &::before {
-    content: '🔗';
-    font-size: 0.7rem;
-  }
-  &.none::before {
-    display: none;
-  }
  }
 `;
 

@@ -1,5 +1,5 @@
 ---
-type: 'post'
+# type: 'post'
 title: 'Javascript 디자인 패턴들'
 date: '2019-12-30'
 tags: ['JavaScript']

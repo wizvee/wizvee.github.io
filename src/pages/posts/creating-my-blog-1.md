@@ -18,20 +18,20 @@ Gatsby는 리액트 기반의 정적 페이지 생성기라고 합니다. 흔히
 ### Gatsby site 생성하기
 
 ```bash
-$ npm i -g gatsby-cli # gatsby-cli을 설치합니다.
-$ gatsby new [title] # Gatsby site를 생성합니다.
-$ cd [title]
-$ gatsby develop # 개발 서버를 구동합니다.
+npm i -g gatsby-cli # gatsby-cli을 설치합니다.
+gatsby new [title] # Gatsby site를 생성합니다.
+cd [title]
+gatsby develop # 개발 서버를 구동합니다.
 ```
 
 개발 서버를 구동하게 되면 **http://localhost:8000/**에서 생성된 사이트를 확인할 수 있습니다. 👀 개발 서버에선 **watched** 상태이므로 파일 수정 뒤 저장하기만 하면 즉시 브라우저에 반영됩니다! 😊
 
 ### Gatsby에서 Styled Components 사용하기
 
-Styled Components를 설치합니다.
+Styled Components를 사용하기 위해 아래 플러그인들을 설치합니다.
 
 ```bash
-$ npm i gatsby-plugin-styled-components styled-components babel-plugin-styled-components
+npm i gatsby-plugin-styled-components styled-components babel-plugin-styled-components
 ```
 
 plugins 배열에 Styled Components를 추가합니다.
@@ -149,7 +149,7 @@ useEffect(() => {
 
 [Creating Tags Pages for Blog Posts](https://www.gatsbyjs.org/docs/adding-tags-and-categories-to-blog-posts/)를 참고하여 적용하였습니다. 다만 참고한 공식 문서는 태그 별 페이지로 전환되지만, 저는 `velog`와 같이 카테고리 같은 느낌을 원했기에… 결과물은 조금 다릅니다. 😋
 
-우선 markdown 문서를 작성할 때에 frontmatter에 tags를 추가해 줍니다.
+우선 마크다운 문서를 작성할 때에 frontmatter에 tags를 추가해 줍니다.
 
 ```markdown
 ---
@@ -160,7 +160,7 @@ tags: ['React', 'Gatsby']
 ---
 ```
 
-그리고 graphql 쿼리에 아래와 같이 추가하면 모든 markdown 문서의 태그들을 조회할 수 있습니다.
+그리고 graphql 쿼리에 아래와 같이 추가하면 모든 마크다운 문서의 태그들을 조회할 수 있습니다.
 
 ```javascript
 export const query = graphql`
@@ -176,3 +176,40 @@ export const query = graphql`
 ```
 
 이후 과정은 Gatsby의 공식 문서처럼 템플릿을 이용해 태그 별 조회 페이지를 만들 수도 있고, 제 블로그처럼 카테고리처럼 활용하셔도 무방합니다! 제 블로그는 `useState`로 해당 기능을 구현했습니다.
+
+## Gatsby-image 사용하기
+
+블로그에 이미지가 빠질 순 없겠죠! 그렇지만 Gatsby에서 본문에 이미지를 삽입하려면 약간의 수고가 필요합니다.
+
+우선 아래 플러그인들을 모두 설치합니다.
+
+```bash
+npm i --save gatsby-remark-images gatsby-plugin-sharp
+```
+
+그리고 `gatsby-config.js`에 설치한 플러그인들을 추가해주세요.
+
+```javascript
+// In your gatsby-config.js
+plugins: [
+  `gatsby-plugin-sharp`,
+  {
+    resolve: `gatsby-transformer-remark`,
+    options: {
+      plugins: [
+        {
+          resolve: `gatsby-remark-images`,
+          options: {
+            // It's important to specify the maxWidth (in pixels) of
+            // the content container as this plugin uses this as the
+            // base for generating different widths of each image.
+            maxWidth: 590,
+          },
+        },
+      ],
+    },
+  },
+];
+```
+
+그러면 이제 마크다운 문법으로 본문에 이미지를 삽입할 수 있습니다! 🎉 간단하죠.

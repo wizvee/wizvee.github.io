@@ -1,5 +1,5 @@
 ---
-type: 'post'
+# type: 'post'
 title: '2019년 정리'
 date: '2020-01-02'
 tags: ['Essay']

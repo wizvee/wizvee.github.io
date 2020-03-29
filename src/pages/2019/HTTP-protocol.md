@@ -1,5 +1,5 @@
 ---
-type: 'post'
+# type: 'post'
 title: 'HTTP 개요'
 date: '2019-12-02'
 tags: ['HTTP']

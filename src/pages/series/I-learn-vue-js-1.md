@@ -1,5 +1,6 @@
 ---
-type: 'post'
+type: 'series'
+topic: 'Vue.js 알아보기'
 title: 'Vue 시작하기'
 date: '2019-12-10'
 tags: ['Vue']

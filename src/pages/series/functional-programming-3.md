@@ -1,7 +1,8 @@
 ---
-# type: 'post'
-title: '함수형 프로그래밍 공부하기2'
-date: '2020-01-12'
+type: 'series'
+topic: '함수형 프로그래밍 공부하기'
+title: '함수형 프로그래밍 응용'
+date: '2020-01-15'
 tags: ['JavaScript', 'Functional-Programming']
 ---
 
