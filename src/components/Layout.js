@@ -38,7 +38,7 @@ const GlobalStyle = createGlobalStyle`
     padding: 0 0.25rem;
     font-size: 0.9rem;
     font-family: 'Fira Code', 'S-CoreDream-4Regular';
-    background: ${({ theme }) => theme.text};
+    background: ${({ theme }) => theme.text_gray};
     color: ${({ theme }) => theme.base};
     text-shadow: none;
   }
@@ -50,7 +50,7 @@ const GlobalStyle = createGlobalStyle`
         font-family: 'Fira Code', 'S-CoreDream-4Regular';
       }
       span.comment {
-        color: ${({ theme }) => theme.text};
+        color: ${({ theme }) => theme.text_gray};
         font-size: 0.95rem;
       }
       span.operator {
