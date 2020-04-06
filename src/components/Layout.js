@@ -9,32 +9,10 @@ const darkTheme = {};
 const GlobalStyle = createGlobalStyle`
  /* 글로벌 스타일 설정 */
  body {
-  background: ${({ theme }) => theme.base};
-  color: ${({ theme }) => theme.text};
-  font-size: 1rem;
-  .primary {
-    color: ${({ theme }) => theme.primary};
-  }
-  .nomal {
-    color: ${({ theme }) => theme.text};
-  }
-  .mark {
-    /* background: ${({ theme }) => theme.second}; */
-    color: ${({ theme }) => theme.base};
-  }
-  .selected {
-    background: ${({ theme }) => theme.primary};
-  }
-  p {
-    margin: 1rem 0;
-    & + & {
-      margin-top: 0;
-    }
-  }
-  strong {
-    color: ${({ theme }) => theme.primary};
-  }
-  code[class="language-text"] {
+   background-color: ${({ theme }) => theme.base};
+   color: ${({ theme }) => theme.text};
+ }
+  /* code[class="language-text"] {
     padding: 0 0.25rem;
     font-size: 0.9rem;
     font-family: 'Fira Code', 'S-CoreDream-4Regular';
@@ -85,21 +63,17 @@ const GlobalStyle = createGlobalStyle`
   color: ${({ theme }) => theme.primary};
  }
  h2 {
-  /* color: ${({ theme }) => theme.second}; */
+  color: ${({ theme }) => theme.second};
  }
  h3 {
-  /* color: ${({ theme }) => theme.third}; */
- }
- a {
-  text-decoration: none;
-  color: ${({ theme }) => theme.primary};
- }
+  color: ${({ theme }) => theme.third};
+ } */
 `;
 
 const ResponsiveBlock = styled.div`
   display: flex;
   flex-direction: column;
-  margin: 0 auto; /* 중앙 정렬 */
+  margin: 0 auto;
   padding: 0 2rem;
   width: 768px;
   max-width: 100%;

@@ -1,6 +1,9 @@
 import React from 'react';
-import styled from 'styled-components';
-import { PressedButton } from '../components/common/Button';
+import { useSelector, useDispatch } from 'react-redux';
+import styled, { css } from 'styled-components';
+
+import { lightTheme } from '../styles/palette';
+import { setTag } from '../state/createStore';
 
 const TagsBlock = styled.div`
   display: flex;
@@ -10,19 +13,39 @@ const TagsBlock = styled.div`
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
   -ms-overflow-style: -ms-autohiding-scrollbar;
-  button {
+  span {
     flex: 0 0 auto;
   }
-  button + button {
+  span + span {
     margin-left: 0.5rem;
   }
 `;
 
+const TagItem = styled.span`
+  color: ${lightTheme.gray};
+  font-size: 0.938rem;
+  cursor: pointer;
+  ${({ active }) =>
+    active &&
+    css`
+      color: ${lightTheme.primary};
+    `}
+`;
+
 const TagsContainer = ({ tags }) => {
+  const selectTag = useSelector((state) => state.tag);
+  const dispatch = useDispatch();
+
   return (
     <TagsBlock>
       {tags.map(([tag, count]) => (
-        <PressedButton key={tag}>{`${tag}(${count})`}</PressedButton>
+        <TagItem
+          key={tag}
+          active={selectTag === tag}
+          onClick={() => dispatch(setTag(tag))}
+        >
+          {tag} <small>({count})</small>
+        </TagItem>
       ))}
     </TagsBlock>
   );

@@ -137,7 +137,7 @@ console.log(_map(users, _get('name')));
 ```javascript
 function _pipe() {
   const fns = arguments;
-  return _reduce(fns, (arg, fn) => fn(arg), arg);
+  return (arg) => _reduce(fns, (arg, fn) => fn(arg), arg);
 }
 
 function _go(arg) {

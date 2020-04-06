@@ -1,8 +1,16 @@
+export const palette = {
+  // light
+  light0: '#ECECEC',
+  // black
+  black0: '#4F4F4F',
+  black1: '#919191',
+  // color
+  color0: '#D55353',
+};
+
 export const lightTheme = {
-  base: '#ECECEC',
-  text: '#898989',
-  text_gray: '#A3A3A3',
-  primary: '#A94F51',
-  shadow_light: '#FCFCFC',
-  shadow_dark: '#D6D6D6',
+  base: palette.light0,
+  text: palette.black0,
+  gray: palette.black1,
+  primary: palette.color0,
 };

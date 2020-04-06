@@ -1,55 +1,34 @@
-import React, { useState } from 'react';
-import { Link, graphql } from 'gatsby';
-import styled from 'styled-components';
+import React from 'react';
+import { graphql } from 'gatsby';
 import _ from 'lodash';
 
-import { _map, _filter, _go, _flatten, _getTotalCount } from '../lib/utils';
+import { _pipe } from '../lib/utils';
 import Layout from '../components/Layout';
 import TagsContainer from '../containers/TagsContainer';
+import PostsContainer from '../containers/PostsContainer';
 
-const Article = styled(Link)`
-  display: block;
-  color: inherit;
-  & + & {
-    margin-top: 1.5rem;
-  }
-  header {
-    h2 {
-      margin: 0;
-    }
-  }
-  p {
-    font-size: 0.93rem;
-  }
-`;
+const validNodes = _.curryRight(_.filter)(({ node }) => node.frontmatter.type);
+
+const validTags = _pipe(
+  _.curryRight(_.map)(({ node }) => node.frontmatter.tags),
+  _.curry(_.flatten),
+  _.curryRight(_.countBy)((tag) => tag),
+  _.curry(_.toPairs),
+);
+
+function addAllTag(posts, tags) {
+  tags.push(['All', posts.length]);
+  return tags;
+}
 
 const Index = ({ data: { allMarkdownRemark: md } }) => {
-  const [filter, setFilter] = useState('all');
-
-  const filteredPosts = _go(
-    md.edges,
-    _filter(({ node }) => node.frontmatter.type),
-  );
-
-  const filteredTags = _go(
-    filteredPosts,
-    _map(({ node }) => node.frontmatter.tags),
-    _flatten,
-    _getTotalCount,
-  );
+  const posts = validNodes(md.edges);
+  const tags = addAllTag(posts, validTags(posts)).sort((a, b) => b[1] - a[1]);
 
   return (
     <Layout>
-      <TagsContainer tags={filteredTags} />
-      {filteredPosts.map(({ node }) => (
-        <Article key={node.id} to={node.fields.slug} className="none">
-          <header>
-            <h2 className="primary">{node.frontmatter.title}</h2>
-            <small>{node.frontmatter.date}</small>
-          </header>
-          <p>{node.excerpt}</p>
-        </Article>
-      ))}
+      <TagsContainer tags={tags} />
+      <PostsContainer posts={posts} />
     </Layout>
   );
 };
@@ -74,10 +53,6 @@ export const query = graphql`
           }
           excerpt(truncate: true)
         }
-      }
-      group(field: frontmatter___tags) {
-        tag: fieldValue
-        totalCount
       }
     }
   }

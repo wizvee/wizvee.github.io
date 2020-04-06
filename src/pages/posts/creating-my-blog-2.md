@@ -1,5 +1,5 @@
 ---
-type: 'post'
+# type: 'post'
 title: 'Gatsby로 블로그 리뉴얼'
 date: '2020-03-28'
 tags: ['React', 'Gatsby']
