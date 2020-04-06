@@ -2,10 +2,10 @@ import React from 'react';
 import styled, { css } from 'styled-components';
 import { lightTheme } from '../../styles/palette';
 
-const shadowFlat = css`
-  box-shadow: 3px 3px 4px ${lightTheme.shadow_dark},
-    -3px -3px 4px ${lightTheme.shadow_light};
-`;
+// const shadowFlat = css`
+//   box-shadow: 3px 3px 4px ${lightTheme.shadow_dark},
+//     -3px -3px 4px ${lightTheme.shadow_light};
+// `;
 
 const shadowPressed = css`
   box-shadow: inset 3px 3px 4px ${lightTheme.shadow_dark},
@@ -25,7 +25,7 @@ const buttonStyle = css`
 
 const ButtonBlock = styled.button`
   ${buttonStyle}
-  ${props =>
+  ${(props) =>
     props.selected &&
     css`
       ${shadowPressed}
@@ -38,4 +38,4 @@ const ButtonBlock = styled.button`
   }
 `;
 
-export const PressedButton = props => <ButtonBlock {...props} />;
+export const PressedButton = (props) => <ButtonBlock {...props} />;

@@ -79,28 +79,11 @@ console.log(_map(user, (o) => o));
 
 **콜백 함수**란 인수로써 다른 함수에 전달된 함수로, 외부 함수 내에서 호출되어 일종의 루틴이나 액션을 완료하는 함수입니다. 함수형 프로그래밍에서는 이러한 콜백 함수, 즉 보조 함수가 어떠한 역할을 하느냐에 따라 다양한 이름을 가지게 됩니다.
 
-- **predi(predicate)**: 어떠한 조건을 반활할 때
+- **predi(predicate)**: 어떠한 조건을 반환할 때
 - **iter(iteratee)**: 순환하며 반복적으로 실행할 때
 - **mapper**: 값을 매핑할 때
 
 함수형 프로그래밍에서는 보조 함수를 통해 내부 다형성을 구현합니다. 상황과 값에 따라 적절한 보조 함수를 인수로 활용함으로써 다형성을 높일 수 있습니다.
-
-```javascript
-function _each(list, iter) {
-  for (let i = 0; i < list.length; i++) {
-    iter(list[i]);
-  }
-  return list;
-}
-
-function _filter(list, predi) {
-  let new_list = [];
-  _each(list, (val) => {
-    if (predi(val)) new_list.push(val);
-  });
-  return new_list;
-}
-```
 
 ## Currying Pattern
 

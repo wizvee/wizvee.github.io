@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { PressedButton } from '../components/common/Button';
 
 const TagsBlock = styled.div`
   display: flex;
@@ -17,8 +18,14 @@ const TagsBlock = styled.div`
   }
 `;
 
-const TagsContainer = () => {
-  return <div></div>;
+const TagsContainer = ({ tags }) => {
+  return (
+    <TagsBlock>
+      {tags.map(([tag, count]) => (
+        <PressedButton key={tag}>{`${tag}(${count})`}</PressedButton>
+      ))}
+    </TagsBlock>
+  );
 };
 
 export default TagsContainer;

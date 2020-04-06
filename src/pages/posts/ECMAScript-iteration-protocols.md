@@ -1,5 +1,5 @@
 ---
-type: 'post'
+# type: 'post'
 title: 'ECMAScript Iteration protocols'
 date: '2020-03-29'
 tags: ['JavaScript']
