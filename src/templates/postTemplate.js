@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { graphql } from 'gatsby';
 import styled from 'styled-components';
+
 import Layout from '../components/Layout';
+import PostToc from '../components/PostToc';
 
 const Container = styled.div`
   h2 {
@@ -32,7 +34,11 @@ const postTemplate = ({ data: { markdownRemark: post } }) => {
       <Container>
         <h1>{post.frontmatter.title}</h1>
         <small>{post.frontmatter.date}</small>
-        <div dangerouslySetInnerHTML={{ __html: post.html }} />
+        <PostToc />
+        <div
+          id="post--content"
+          dangerouslySetInnerHTML={{ __html: post.html }}
+        />
       </Container>
     </Layout>
   );

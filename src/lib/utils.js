@@ -1,5 +1,3 @@
-import _ from 'lodash';
-
 export function _reduce(fn, iter, acc) {
   if (!acc) {
     iter = iter[Symbol.iterator]();
