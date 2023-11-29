@@ -1,6 +1,6 @@
 1:HL["/_next/static/media/c9a5bc6a7c948fb0-s.p.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
-2:HL["/_next/static/css/3bfb2ab5abe755af.css","style",{"crossOrigin":""}]
-0:["KBNIq6-hh7EgKFqHSCRyw",[[["",{"children":["__PAGE__",{}]},"$undefined","$undefined",true],"$L3",[[["$","link","0",{"rel":"stylesheet","href":"/_next/static/css/3bfb2ab5abe755af.css","precedence":"next","crossOrigin":""}]],"$L4"]]]]
+2:HL["/_next/static/css/5f69674dde31b8a6.css","style",{"crossOrigin":""}]
+0:["20Q9rS4efMR6mKq5bf1Fl",[[["",{"children":["__PAGE__",{}]},"$undefined","$undefined",true],"$L3",[[["$","link","0",{"rel":"stylesheet","href":"/_next/static/css/5f69674dde31b8a6.css","precedence":"next","crossOrigin":""}]],"$L4"]]]]
 5:I[6954,[],""]
 6:I[7264,[],""]
 8:I[413,["413","static/chunks/413-dd2d1e77cac135ea.js","931","static/chunks/app/page-c01c3d55bf5c9c68.js"],"Image"]
