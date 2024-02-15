@@ -5,54 +5,54 @@ import styles from "./TypingText.module.css";
 
 export default function TypeText() {
   const [text, setText] = useState("");
-  const [emoji, setEmoji] = useState("");
-  const [emojiClass, setEmojiClass] = useState("");
+  const [emojiData, setEmojiData] = useState({ emoji: "", emojiClass: "" });
   const [wordIndex, setWordIndex] = useState(0);
-  const [charIndex, setCharIndex] = useState(0);
-  const [isTyping, setIsTyping] = useState(false);
+  const [isDeleting, setIsDeleting] = useState(false);
 
-  const TYPING_SPEED = 200; // ms
-  const DELAY_TIME = 2000; // ms
-  const DELETING_SPEED = 100; // ms
+  const TYPING_SPEED = 200;
+  const DELETING_SPEED = 100;
+  const DELAY_TIME = 2000;
 
   useEffect(() => {
-    const words = [
-      { word: "JH!", emoji: "👋", emojiClass: "wave" },
-      { word: "Developer", emoji: "⚡️", emojiClass: "" },
+    const texts = [
+      { text: "JH!", emoji: "👋", emojiClass: "wave" },
+      { text: "Developer", emoji: "⚡️", emojiClass: "" },
     ];
-    const { word, emoji, emojiClass } = words[wordIndex];
+    const currentText = texts[wordIndex].text;
     let timeout: ReturnType<typeof setTimeout>;
 
-    if (isTyping) {
-      if (charIndex < word.length) {
-        timeout = setTimeout(() => {
-          setText((prev) => prev + word[charIndex]);
-          setCharIndex((index) => index + 1);
-        }, TYPING_SPEED);
-      } else {
-        setEmoji(emoji);
-        setEmojiClass(emojiClass);
-        timeout = setTimeout(() => {
-          setEmoji("");
-          setEmojiClass("");
-          setIsTyping(false);
-        }, DELAY_TIME);
-      }
+    const type = () => {
+      setText(currentText.substring(0, text.length + 1));
+    };
+
+    const deleteText = () => {
+      setText(currentText.substring(0, text.length - 1));
+    };
+
+    if (!isDeleting && text === currentText) {
+      // 모든 텍스트가 타이핑되면 이모지 애니메이션 실행
+      setEmojiData({
+        emoji: texts[wordIndex].emoji,
+        emojiClass: texts[wordIndex].emojiClass,
+      });
+      // 이모지 애니메이션 종료 후 딜리팅
+      timeout = setTimeout(() => {
+        setEmojiData({ emoji: "", emojiClass: "" });
+        setIsDeleting(true);
+      }, DELAY_TIME);
+    } else if (isDeleting && text === "") {
+      setIsDeleting(false);
+      setWordIndex((prevIndex) => (prevIndex + 1) % texts.length);
+    } else if (isDeleting) {
+      timeout = setTimeout(deleteText, DELETING_SPEED);
     } else {
-      if (charIndex > 0) {
-        timeout = setTimeout(() => {
-          setText((prev) => prev.slice(0, -1));
-          setCharIndex((index) => index - 1);
-        }, DELETING_SPEED);
-      } else {
-        setWordIndex((index) => (index + 1) % words.length);
-        setIsTyping(true);
-      }
+      timeout = setTimeout(type, TYPING_SPEED);
     }
 
     return () => clearTimeout(timeout);
-  }, [wordIndex, charIndex, isTyping]);
+  }, [text, isDeleting, wordIndex]);
 
+  const { emoji, emojiClass } = emojiData;
   return (
     <h1 className="text-7xl font-black">
       Hello,
@@ -60,7 +60,11 @@ export default function TypeText() {
         I&apos;m{" "}
         <span className="text-white">
           {text}
-          <span className={`text-6xl ml-2 ${styles[emojiClass]}`}>{emoji}</span>
+          <span
+            className={`inline-block text-6xl ml-2 ${styles[emojiClass] || ""}`}
+          >
+            {emoji}
+          </span>
         </span>
       </p>
     </h1>
