@@ -1,0 +1,13 @@
+.wave {
+  display: inline-block;
+  animation: wave 0.2s 0.35s 4 alternate both;
+}
+
+@keyframes wave {
+  from {
+    transform: rotate(0);
+  }
+  to {
+    transform: rotate(25deg);
+  }
+}
