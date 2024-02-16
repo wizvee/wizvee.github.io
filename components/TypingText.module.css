@@ -1,6 +1,9 @@
 .wave {
-  display: inline-block;
-  animation: wave 0.2s 0.35s 4 alternate both;
+  animation: wave 0.2s linear 0.3s 4 alternate both;
+}
+
+.lighting {
+  animation: lighting 0.15s ease-in 0.3s 3 alternate;
 }
 
 @keyframes wave {
@@ -9,5 +12,14 @@
   }
   to {
     transform: rotate(25deg);
+  }
+}
+
+@keyframes lighting {
+  0% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(10px);
   }
 }

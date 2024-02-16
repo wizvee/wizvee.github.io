@@ -19,10 +19,10 @@ export default function RootLayout({
       <body
         className={`${inter.className} flex flex-col items-center min-h-screen`}
       >
-        <header>
+        <header className="flex items-center h-14">
           <h1>Blog</h1>
         </header>
-        <main className="flex-grow">{children}</main>
+        <main className="flex-grow container">{children}</main>
         <footer>© 2019</footer>
       </body>
     </html>

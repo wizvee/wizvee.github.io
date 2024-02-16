@@ -16,7 +16,7 @@ export default function TypeText() {
   useEffect(() => {
     const texts = [
       { text: "JH!", emoji: "👋", emojiClass: "wave" },
-      { text: "Developer", emoji: "⚡️", emojiClass: "" },
+      { text: "Developer", emoji: "⚡️", emojiClass: "lighting" },
     ];
     const currentText = texts[wordIndex].text;
     let timeout: ReturnType<typeof setTimeout>;
@@ -30,12 +30,10 @@ export default function TypeText() {
     };
 
     if (!isDeleting && text === currentText) {
-      // 모든 텍스트가 타이핑되면 이모지 애니메이션 실행
       setEmojiData({
         emoji: texts[wordIndex].emoji,
         emojiClass: texts[wordIndex].emojiClass,
       });
-      // 이모지 애니메이션 종료 후 딜리팅
       timeout = setTimeout(() => {
         setEmojiData({ emoji: "", emojiClass: "" });
         setIsDeleting(true);
