@@ -5,6 +5,12 @@ export async function generateStaticParams() {
 }
 
 export default async function Post({ params }: { params: { slug: string } }) {
-  const { content } = await getPostBySlug(params.slug);
-  return <>{content}</>;
+  const { title, date, content } = await getPostBySlug(params.slug);
+  return (
+    <article>
+      <h1>{title}</h1>
+      <time>{date}</time>
+      {content}
+    </article>
+  );
 }
