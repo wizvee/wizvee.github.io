@@ -4,7 +4,7 @@ import { usePathname } from "next/navigation";
 
 function getPagePath(basePath: string, page: number, total: number): string {
   if (page < 1 || page > total) return "";
-  return page === 1 ? `/${basePath}` : `/${basePath}/page/${page}`;
+  return page === 1 ? `${basePath}` : `${basePath}/page/${page}`;
 }
 
 export default function usePagination(posts: Post[], currentPage: number) {
@@ -15,7 +15,8 @@ export default function usePagination(posts: Post[], currentPage: number) {
     currentPage * POSTS_PER_PAGE
   );
 
-  const path = usePathname().split("/").filter(Boolean)[0];
+  const path = usePathname().replace(/\/page\/\d+$/, "");
+
   const previous = getPagePath(path, currentPage - 1, totalPages);
   const next = getPagePath(path, currentPage + 1, totalPages);
 
