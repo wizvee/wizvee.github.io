@@ -29,7 +29,7 @@ function processFrontmatter(data: Frontmatter): FrontmatterProcessed {
   return { title, date: dateTimeFormat(date), tags };
 }
 
-export async function getPostBySlug(slug: string) {
+export async function getPostBySlug(slug: string): Promise<Post> {
   const realSlug = slug.replace(/\.mdx$/, "");
   const fullPath = join(postsDirectory, `${realSlug}.mdx`);
 
@@ -39,15 +39,29 @@ export async function getPostBySlug(slug: string) {
     options: { parseFrontmatter: true },
   });
 
-  return {
-    slug: realSlug,
-    content,
-    ...processFrontmatter(frontmatter),
-  } as Post;
+  return { slug: realSlug, content, ...processFrontmatter(frontmatter) };
 }
 
 export async function getAllPosts(): Promise<Post[]> {
   const slugs = await fs.readdir(postsDirectory);
   const posts = await Promise.all(slugs.map(getPostBySlug));
-  return posts;
+  return posts.sort((a, b) => b.date.localeCompare(a.date));
+}
+
+export async function getPostsByTag(tag: string): Promise<Post[]> {
+  const posts = await getAllPosts();
+  return posts.filter(({ tags }) => tags.includes(tag));
+}
+
+export async function getAllTags(): Promise<[string, number][]> {
+  const posts = await getAllPosts();
+  const tagMap = new Map<string, number>();
+
+  posts.forEach(({ tags }) => {
+    tags.forEach((tag) => {
+      tagMap.set(tag, (tagMap.get(tag) ?? 0) + 1);
+    });
+  });
+
+  return Array.from(tagMap).sort((a, b) => b[1] - a[1]);
 }
