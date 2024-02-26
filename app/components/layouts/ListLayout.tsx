@@ -1,7 +1,7 @@
 "use client";
 
-import Pagination from "@/components/Pagination";
-import { PostList } from "@/components/PostList";
+import Pagination from "@/app/components/Pagination";
+import { PostList } from "@/app/components/PostList";
 import usePagination from "@/hooks/usePagination";
 import { Post } from "@/lib/api";
 
