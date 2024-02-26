@@ -1,11 +1,7 @@
 import { Post } from "@/lib/api";
 import { POSTS_PER_PAGE } from "@/lib/constants";
 import { usePathname } from "next/navigation";
-
-function getPagePath(basePath: string, page: number, total: number): string {
-  if (page < 1 || page > total) return "";
-  return page === 1 ? `${basePath}` : `${basePath}/page/${page}`;
-}
+import useQueryString from "./useQueryString";
 
 export default function usePagination(posts: Post[], currentPage: number) {
   const totalPages = Math.ceil(posts.length / POSTS_PER_PAGE);
@@ -15,10 +11,16 @@ export default function usePagination(posts: Post[], currentPage: number) {
     currentPage * POSTS_PER_PAGE
   );
 
-  const path = usePathname().replace(/\/page\/\d+$/, "");
+  const pathname = usePathname();
+  const prevPage = currentPage - 1;
+  const nextPage = currentPage + 1;
 
-  const previous = getPagePath(path, currentPage - 1, totalPages);
-  const next = getPagePath(path, currentPage + 1, totalPages);
+  const prevPath = useQueryString("page", prevPage.toString());
+  const nextPath = useQueryString("page", nextPage.toString());
+
+  const previous =
+    currentPage > 1 ? (prevPage === 1 ? pathname : prevPath) : "";
+  const next = currentPage < totalPages ? nextPath : "";
 
   return { currentPosts, totalPages, previous, next };
 }
