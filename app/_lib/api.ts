@@ -1,5 +1,6 @@
 import { join } from "path";
 import fs from "fs/promises";
+import remarkGfm from "remark-gfm";
 import { ReactElement } from "react";
 import { compileMDX } from "next-mdx-remote/rsc";
 
@@ -36,7 +37,10 @@ export async function getPostBySlug(slug: string): Promise<Post> {
   const fileContents = await fs.readFile(fullPath, "utf8");
   const { content, frontmatter } = await compileMDX<Frontmatter>({
     source: fileContents,
-    options: { parseFrontmatter: true },
+    options: {
+      parseFrontmatter: true,
+      mdxOptions: { remarkPlugins: [remarkGfm] },
+    },
   });
 
   return { slug: realSlug, content, ...processFrontmatter(frontmatter) };
