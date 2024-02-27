@@ -1,5 +1,5 @@
-import { Post } from "@/lib/api";
-import { POSTS_PER_PAGE } from "@/lib/constants";
+import { Post } from "@/app/_lib/api";
+import { POSTS_PER_PAGE } from "@/app/_lib/constants";
 import { usePathname } from "next/navigation";
 import useQueryString from "./useQueryString";
 

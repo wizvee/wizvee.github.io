@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Post } from "@/lib/api";
+import { Post } from "@/app/_lib/api";
 
 export function PostList({ posts }: { posts: Post[] }) {
   return (

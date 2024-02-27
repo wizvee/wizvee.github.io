@@ -1,9 +1,9 @@
 "use client";
 
-import Pagination from "@/app/components/Pagination";
-import { PostList } from "@/app/components/PostList";
-import usePagination from "@/hooks/usePagination";
-import { Post } from "@/lib/api";
+import Pagination from "@/app/_components/Pagination";
+import { PostList } from "@/app/_components/PostList";
+import usePagination from "@/app/_hooks/usePagination";
+import { Post } from "@/app/_lib/api";
 
 interface Props {
   posts: Post[];
