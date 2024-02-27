@@ -11,7 +11,10 @@ interface Props {
 }
 
 export default function ListLayout({ posts, currentPage }: Props) {
-  const { currentPosts, totalPages, previous, next } = usePagination(posts, currentPage);
+  const { currentPosts, totalPages, previousPage, nextPage } = usePagination(
+    posts,
+    currentPage
+  );
 
   return (
     <section>
@@ -19,8 +22,8 @@ export default function ListLayout({ posts, currentPage }: Props) {
       <Pagination
         currentPage={currentPage}
         totalPages={totalPages}
-        previous={previous}
-        next={next}
+        previousPage={previousPage}
+        nextPage={nextPage}
       />
     </section>
   );

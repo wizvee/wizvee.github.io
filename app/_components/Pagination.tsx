@@ -1,31 +1,31 @@
 import Link from "next/link";
 
-interface Props {
-  currentPage: number;
-  totalPages: number;
-  previous: string;
-  next: string;
-}
-
-function NavButton({ path, text }: { path: string; text: string }) {
+function NavButton({ href, text }: { href: string; text: string }) {
   return (
-    <Link href={path} className={path ? "" : "cursor-not-allowed"}>
+    <Link href={href} className={href ? "" : "cursor-not-allowed"}>
       {text}
     </Link>
   );
 }
 
+interface PaginationProps {
+  currentPage: number;
+  totalPages: number;
+  previousPage: string;
+  nextPage: string;
+}
+
 export default function Pagination({
   currentPage,
   totalPages,
-  previous,
-  next,
-}: Props) {
+  previousPage,
+  nextPage,
+}: PaginationProps) {
   return (
     <div>
-      <NavButton path={previous} text="Previous" />
+      <NavButton href={previousPage} text="Previous" />
       <span>{`${currentPage} / ${totalPages}`}</span>
-      <NavButton path={next} text="Next" />
+      <NavButton href={nextPage} text="Next" />
     </div>
   );
 }

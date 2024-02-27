@@ -48,20 +48,38 @@ export async function getAllPosts(): Promise<Post[]> {
   return posts.sort((a, b) => b.date.localeCompare(a.date));
 }
 
-export async function getPostsByTag(tag: string): Promise<Post[]> {
-  const posts = await getAllPosts();
-  return posts.filter(({ tags }) => tags.includes(tag));
-}
+type TagData = {
+  count: number;
+  relatedTags: Set<string>;
+};
 
-export async function getAllTags(): Promise<[string, number][]> {
+export type Tag = {
+  tag: string;
+  relatedTags: string[];
+};
+
+export async function getAllTags(): Promise<Tag[]> {
   const posts = await getAllPosts();
-  const tagMap = new Map<string, number>();
+  const tagMap = new Map<string, TagData>();
 
   posts.forEach(({ tags }) => {
     tags.forEach((tag) => {
-      tagMap.set(tag, (tagMap.get(tag) ?? 0) + 1);
+      if (!tagMap.has(tag)) {
+        tagMap.set(tag, { count: 0, relatedTags: new Set() });
+      }
+      const tagData = tagMap.get(tag)!;
+      tagData.count += 1;
+
+      tags.forEach((t) => {
+        if (t !== tag) tagData.relatedTags.add(t);
+      });
     });
   });
 
-  return Array.from(tagMap).sort((a, b) => b[1] - a[1]);
+  return Array.from(tagMap)
+    .sort((a, b) => b[1].count - a[1].count)
+    .map(([tag, { relatedTags }]) => ({
+      tag,
+      relatedTags: Array.from(relatedTags),
+    }));
 }
