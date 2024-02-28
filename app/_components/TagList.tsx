@@ -45,9 +45,12 @@ export default function TagList({ tags, selectedTags }: TagListProps) {
   }, [tags, selectedTags]);
 
   const isSelectable = useCallback(
-    (tag: string) =>
-      selectableTags.length === 0 || selectableTags.includes(tag),
-    [selectableTags]
+    (tag: string) => {
+      const notSelected =
+        selectedTags.length === 0 && selectableTags.length === 0;
+      return notSelected || selectableTags.includes(tag);
+    },
+    [selectedTags, selectableTags]
   );
 
   const isSelected = useCallback(
