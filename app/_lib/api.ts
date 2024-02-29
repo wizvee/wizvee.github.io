@@ -1,8 +1,11 @@
 import { join } from "path";
 import fs from "fs/promises";
-import remarkGfm from "remark-gfm";
+
 import { ReactElement } from "react";
 import { compileMDX } from "next-mdx-remote/rsc";
+
+import remarkGfm from "remark-gfm";
+import rehypePrettyCode from "rehype-pretty-code";
 
 type Frontmatter = {
   title: string;
@@ -39,7 +42,10 @@ export async function getPostBySlug(slug: string): Promise<Post> {
     source: fileContents,
     options: {
       parseFrontmatter: true,
-      mdxOptions: { remarkPlugins: [remarkGfm] },
+      mdxOptions: {
+        remarkPlugins: [remarkGfm],
+        rehypePlugins: [[rehypePrettyCode, { theme: "github-light" }]],
+      },
     },
   });
 
