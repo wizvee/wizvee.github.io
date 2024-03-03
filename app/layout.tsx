@@ -1,5 +1,9 @@
-import type { Metadata } from "next";
 import "./globals.css";
+import type { Metadata } from "next";
+import { Noto_Sans } from "next/font/google";
+import Link from "next/link";
+
+const notoSans = Noto_Sans({ weight: ["400", "900"], subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Blog",
@@ -13,10 +17,11 @@ export default function RootLayout({
 }) {
   return (
     <html lang="ko" className="h-full">
-      <body className="flex flex-col h-full">
+      <body className={`${notoSans.className} flex flex-col h-full bg-background text-foreground`}>
         <div className="flex flex-col min-h-screen w-full max-w-[1028px] mx-auto">
           <header className="flex items-center h-14 justify-center">
-            <h1>Blog</h1>
+            <Link href="/">Home</Link>
+            <Link href="/blog">Blog</Link>
           </header>
           <main className="flex-grow">{children}</main>
           <footer className="h-14 flex items-center justify-center">

@@ -1,11 +1,14 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import styles from "./TypingText.module.css";
 
 export default function TypeText() {
   const [text, setText] = useState("");
-  const [emojiData, setEmojiData] = useState({ emoji: "", emojiClass: "" });
+  const [emojiData, setEmojiData] = useState({
+    blink: true,
+    emoji: "",
+    emojiClass: "",
+  });
   const [wordIndex, setWordIndex] = useState(0);
   const [isDeleting, setIsDeleting] = useState(false);
 
@@ -15,8 +18,12 @@ export default function TypeText() {
 
   useEffect(() => {
     const texts = [
-      { text: "JH!", emoji: "👋", emojiClass: "wave" },
-      { text: "Developer", emoji: "⚡️", emojiClass: "lighting" },
+      { text: "JH!", emoji: "👋", emojiClass: "ml-3 mr-2 animate-wave" },
+      {
+        text: "Developer",
+        emoji: "⚡️",
+        emojiClass: "ml-1 -mr-2 animate-glitch",
+      },
     ];
     const currentText = texts[wordIndex].text;
     let timeout: ReturnType<typeof setTimeout>;
@@ -30,12 +37,17 @@ export default function TypeText() {
     };
 
     if (!isDeleting && text === currentText) {
-      setEmojiData({
-        emoji: texts[wordIndex].emoji,
-        emojiClass: texts[wordIndex].emojiClass,
-      });
+      timeout = setTimeout(
+        () =>
+          setEmojiData({
+            blink: true,
+            emoji: texts[wordIndex].emoji,
+            emojiClass: texts[wordIndex].emojiClass,
+          }),
+        TYPING_SPEED
+      );
       timeout = setTimeout(() => {
-        setEmojiData({ emoji: "", emojiClass: "" });
+        setEmojiData({ blink: false, emoji: "", emojiClass: "" });
         setIsDeleting(true);
       }, DELAY_TIME);
     } else if (isDeleting && text === "") {
@@ -50,21 +62,23 @@ export default function TypeText() {
     return () => clearTimeout(timeout);
   }, [text, isDeleting, wordIndex]);
 
-  const { emoji, emojiClass } = emojiData;
+  const { blink, emoji, emojiClass } = emojiData;
   return (
-    <h1 className="text-7xl font-black">
-      Hello,
-      <p>
-        I&apos;m{" "}
-        <span className="text-white">
-          {text}
+    <div className="my-8">
+      <h1 className="text-7xl font-black">
+        Hello,
+        <p>
+          I&apos;m{" "}
           <span
-            className={`inline-block text-6xl ml-2 ${styles[emojiClass] || ""}`}
+            className={`relative after-cursor ${
+              blink && "after:animate-blink"
+            }`}
           >
-            {emoji}
+            <span className="text-white bold-heading">{text}</span>
+            <span className={`inline-block ${emojiClass}`}>{emoji}</span>
           </span>
-        </span>
-      </p>
-    </h1>
+        </p>
+      </h1>
+    </div>
   );
 }
