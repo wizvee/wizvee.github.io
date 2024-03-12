@@ -39,8 +39,17 @@ const config: Config = {
           "100%": { transform: "translate(0)" },
         },
       },
+      typography: {
+        DEFAULT: {
+          css: {
+            "--tw-prose-headings": "#133020",
+            color: "#133020",
+          },
+        },
+      },
     },
   },
   plugins: [require("@tailwindcss/typography")],
 };
+
 export default config;

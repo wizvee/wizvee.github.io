@@ -18,7 +18,7 @@ export default function RootLayout({
   return (
     <html lang="ko" className="h-full">
       <body className={`${notoSans.className} flex flex-col h-full bg-background text-foreground`}>
-        <div className="flex flex-col min-h-screen w-full max-w-[1028px] mx-auto">
+        <div className="flex flex-col min-h-screen w-full max-w-screen-md mx-auto">
           <header className="flex items-center h-14 justify-center">
             <Link href="/">Home</Link>
             <Link href="/blog">Blog</Link>

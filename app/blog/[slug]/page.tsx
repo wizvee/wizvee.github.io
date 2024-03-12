@@ -11,8 +11,8 @@ export default async function Post({
 }) {
   const { title, date, content } = await getPostBySlug(slug);
   return (
-    <article className="prose max-w-none">
-      <h1>{title}</h1>
+    <article className="prose max-w-none break-words text-justify">
+      <h2>{title}</h2>
       <time>{date}</time>
       {content}
     </article>

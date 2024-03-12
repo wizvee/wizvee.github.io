@@ -74,7 +74,7 @@ export default function TypeText() {
               blink && "after:animate-blink"
             }`}
           >
-            <span className="text-white bold-heading">{text}</span>
+            <span className="typing-text">{text}</span>
             <span className={`inline-block ${emojiClass}`}>{emoji}</span>
           </span>
         </p>

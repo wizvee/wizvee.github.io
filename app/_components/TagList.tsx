@@ -16,8 +16,10 @@ function Tag({ tag, isSelected, isSelectable, onToggle }: TagProps) {
 
   return (
     <button
-      className={`${
-        isSelected ? "text-blue-500" : disabled ? "text-gray-500" : ""
+      className={`m-1 px-2 py-1 button ${isSelected ? "bg-yellow-500" : ""} ${
+        disabled
+          ? "border-gray-500 text-gray-500 cursor-not-allowed"
+          : "hover:box-shadow"
       }`}
       onClick={() => onToggle(tag, !isSelected)}
       disabled={disabled}
@@ -71,7 +73,7 @@ export default function TagList({ tags, selectedTags }: TagListProps) {
   );
 
   return (
-    <section>
+    <section className="flex justify-center">
       {tags.map(({ tag }) => (
         <Tag
           key={tag}
